@@ -1,0 +1,394 @@
+# These registers ignore a write unless their KEY field holds the register's key.
+# Positions and values from the SDK headers (<MODULE>_<REG>_KEY_*). The GSC and XBAR
+# keys, which the headers leave out, are from the TRM (SPRUJF2B, sections 15.3 and 20.4).
+
+# hw_adc.h
+ADC0:
+  _clusters:
+    GPRCM:
+      PWREN:
+        _add:
+          KEY:
+            description: "Write key: the write only takes effect if KEY is 0x26"
+            bitOffset: 24
+            bitWidth: 8
+            access: write-only
+        KEY:
+          UNLOCK: [0x26, "KEY to allow write access to this register"]
+      RSTCTL:
+        _add:
+          KEY:
+            description: "Write key: the write only takes effect if KEY is 0xB1"
+            bitOffset: 24
+            bitWidth: 8
+            access: write-only
+        KEY:
+          UNLOCK: [0xB1, "KEY to allow write access to this register"]
+
+# hw_aes.h
+AES:
+  _clusters:
+    GPRCM:
+      PWREN:
+        _add:
+          KEY:
+            description: "Write key: the write only takes effect if KEY is 0x26"
+            bitOffset: 24
+            bitWidth: 8
+            access: write-only
+        KEY:
+          UNLOCK: [0x26, "KEY to allow write access to this register"]
+      RSTCTL:
+        _add:
+          KEY:
+            description: "Write key: the write only takes effect if KEY is 0xB1"
+            bitOffset: 24
+            bitWidth: 8
+            access: write-only
+        KEY:
+          UNLOCK: [0xB1, "KEY to allow write access to this register"]
+
+# hw_crcp.h
+CRCP:
+  _clusters:
+    GPRCM:
+      PWREN:
+        _add:
+          KEY:
+            description: "Write key: the write only takes effect if KEY is 0x26"
+            bitOffset: 24
+            bitWidth: 8
+            access: write-only
+        KEY:
+          UNLOCK: [0x26, "KEY to allow write access to this register"]
+      RSTCTL:
+        _add:
+          KEY:
+            description: "Write key: the write only takes effect if KEY is 0xB1"
+            bitOffset: 24
+            bitWidth: 8
+            access: write-only
+        KEY:
+          UNLOCK: [0xB1, "KEY to allow write access to this register"]
+
+# hw_gpio.h
+GPIO0:
+  _clusters:
+    GPRCM:
+      PWREN:
+        _add:
+          KEY:
+            description: "Write key: the write only takes effect if KEY is 0x26"
+            bitOffset: 24
+            bitWidth: 8
+            access: write-only
+        KEY:
+          UNLOCK: [0x26, "KEY to allow write access to this register"]
+      RSTCTL:
+        _add:
+          KEY:
+            description: "Write key: the write only takes effect if KEY is 0xB1"
+            bitOffset: 24
+            bitWidth: 8
+            access: write-only
+        KEY:
+          UNLOCK: [0xB1, "KEY to allow write access to this register"]
+
+# hw_mcan.h
+MCAN:
+  PWREN:
+    _add:
+      KEY:
+        description: "Write key: the write only takes effect if KEY is 0x26"
+        bitOffset: 24
+        bitWidth: 8
+        access: write-only
+    KEY:
+      UNLOCK: [0x26, "KEY to allow write access to this register"]
+  RSTCTL:
+    _add:
+      KEY:
+        description: "Write key: the write only takes effect if KEY is 0xB1"
+        bitOffset: 24
+        bitWidth: 8
+        access: write-only
+    KEY:
+      UNLOCK: [0xB1, "KEY to allow write access to this register"]
+
+# hw_sysctl.h
+SYSCTL:
+  EXRSTPIN:
+    _add:
+      KEY:
+        description: "Write key: the write only takes effect if KEY is 0x1E"
+        bitOffset: 24
+        bitWidth: 8
+        access: write-only
+    KEY:
+      UNLOCK: [0x1E, "Issue command"]
+  FCCCMD:
+    _add:
+      KEY:
+        description: "Write key: the write only takes effect if KEY is 0x0E"
+        bitOffset: 24
+        bitWidth: 8
+        access: write-only
+    KEY:
+      UNLOCK: [0x0E, "Issue command"]
+  PWREN_MCPERIPH:
+    _add:
+      KEY:
+        description: "Write key: the write only takes effect if KEY is 0x26"
+        bitOffset: 24
+        bitWidth: 8
+        access: write-only
+    KEY:
+      UNLOCK: [0x26, "KEY to allow write access to this register"]
+  PWREN_SYSPERIPH:
+    _add:
+      KEY:
+        description: "Write key: the write only takes effect if KEY is 0x26"
+        bitOffset: 24
+        bitWidth: 8
+        access: write-only
+    KEY:
+      UNLOCK: [0x26, "KEY to allow write access to this register"]
+  RESETCMD:
+    _add:
+      KEY:
+        description: "Write key: the write only takes effect if KEY is 0xE4"
+        bitOffset: 24
+        bitWidth: 8
+        access: write-only
+    KEY:
+      UNLOCK: [0xE4, "Issue reset"]
+  RSTCTL_ASSERT_MCPERIPH:
+    _add:
+      KEY:
+        description: "Write key: the write only takes effect if KEY is 0xB1"
+        bitOffset: 24
+        bitWidth: 8
+        access: write-only
+    KEY:
+      UNLOCK: [0xB1, "KEY to allow write access to this register"]
+  RSTCTL_ASSERT_SYSPERIPH:
+    _add:
+      KEY:
+        description: "Write key: the write only takes effect if KEY is 0xB1"
+        bitOffset: 24
+        bitWidth: 8
+        access: write-only
+    KEY:
+      UNLOCK: [0xB1, "KEY to allow write access to this register"]
+  RSTCTL_CLEAR_MCPERIPH:
+    _add:
+      KEY:
+        description: "Write key: the write only takes effect if KEY is 0xB1"
+        bitOffset: 24
+        bitWidth: 8
+        access: write-only
+    KEY:
+      UNLOCK: [0xB1, "KEY to allow write access to this register"]
+  RSTCTL_CLEAR_SYSPERIPH:
+    _add:
+      KEY:
+        description: "Write key: the write only takes effect if KEY is 0xB1"
+        bitOffset: 24
+        bitWidth: 8
+        access: write-only
+    KEY:
+      UNLOCK: [0xB1, "KEY to allow write access to this register"]
+  SHDNIOREL:
+    _add:
+      KEY:
+        description: "Write key: the write only takes effect if KEY is 0x91"
+        bitOffset: 24
+        bitWidth: 8
+        access: write-only
+    KEY:
+      UNLOCK: [0x91, "Issue command"]
+  SRAMCFG:
+    _add:
+      KEY:
+        description: "Write key: the write only takes effect if KEY is 0xB5"
+        bitOffset: 24
+        bitWidth: 8
+        access: write-only
+    KEY:
+      UNLOCK: [0xB5, "Issue write"]
+  SWDJCFG:
+    _add:
+      KEY:
+        description: "Write key: the write only takes effect if KEY is 0x62"
+        bitOffset: 24
+        bitWidth: 8
+        access: write-only
+    KEY:
+      UNLOCK: [0x62, "Issue command"]
+  SYSOSCFCLCTL:
+    _add:
+      KEY:
+        description: "Write key: the write only takes effect if KEY is 0x2A"
+        bitOffset: 24
+        bitWidth: 8
+        access: write-only
+    KEY:
+      UNLOCK: [0x2A, "Issue Command"]
+  SYSSTATUSCLR:
+    _add:
+      KEY:
+        description: "Write key: the write only takes effect if KEY is 0xCE"
+        bitOffset: 24
+        bitWidth: 8
+        access: write-only
+    KEY:
+      UNLOCK: [0xCE, "Issue command"]
+  SYSTEMCFG:
+    _add:
+      KEY:
+        description: "Write key: the write only takes effect if KEY is 0x1B"
+        bitOffset: 24
+        bitWidth: 8
+        access: write-only
+    KEY:
+      UNLOCK: [0x1B, "Issue write"]
+
+# hw_gptimer.h
+TIMG4:
+  _clusters:
+    GPRCM:
+      PWREN:
+        _add:
+          KEY:
+            description: "Write key: the write only takes effect if KEY is 0x26"
+            bitOffset: 24
+            bitWidth: 8
+            access: write-only
+        KEY:
+          UNLOCK: [0x26, "KEY to allow write access to this register"]
+      RSTCTL:
+        _add:
+          KEY:
+            description: "Write key: the write only takes effect if KEY is 0xB1"
+            bitOffset: 24
+            bitWidth: 8
+            access: write-only
+        KEY:
+          UNLOCK: [0xB1, "KEY to allow write access to this register"]
+
+# hw_unicomm.h
+UNICOMM0:
+  _clusters:
+    GPRCM:
+      CLKCFG:
+        _add:
+          KEY:
+            description: "Write key: the write only takes effect if KEY is 0xA9"
+            bitOffset: 24
+            bitWidth: 8
+            access: write-only
+        KEY:
+          UNLOCK: [0xA9, "key value to allow change field of GPRCM"]
+      PWREN:
+        _add:
+          KEY:
+            description: "Write key: the write only takes effect if KEY is 0x26"
+            bitOffset: 24
+            bitWidth: 8
+            access: write-only
+        KEY:
+          UNLOCK: [0x26, "KEY to allow write access to this register"]
+      RSTCTL:
+        _add:
+          KEY:
+            description: "Write key: the write only takes effect if KEY is 0xB1"
+            bitOffset: 24
+            bitWidth: 8
+            access: write-only
+        KEY:
+          UNLOCK: [0xB1, "KEY to allow write access to this register"]
+
+# hw_wwdt.h
+WWDT:
+  _clusters:
+    GPRCM:
+      PWREN:
+        _add:
+          KEY:
+            description: "Write key: the write only takes effect if KEY is 0x26"
+            bitOffset: 24
+            bitWidth: 8
+            access: write-only
+        KEY:
+          UNLOCK: [0x26, "KEY to allow write access to this register"]
+      RSTCTL:
+        _add:
+          KEY:
+            description: "Write key: the write only takes effect if KEY is 0xB1"
+            bitOffset: 24
+            bitWidth: 8
+            access: write-only
+        KEY:
+          UNLOCK: [0xB1, "KEY to allow write access to this register"]
+  WWDTCTL0:
+    _add:
+      KEY:
+        description: "Write key: the write only takes effect if KEY is 0xC9"
+        bitOffset: 24
+        bitWidth: 8
+        access: write-only
+    KEY:
+      UNLOCK: [0xC9, "KEY to allow write access to this register"]
+  WWDTCTL1:
+    _add:
+      KEY:
+        description: "Write key: the write only takes effect if KEY is 0xBE"
+        bitOffset: 24
+        bitWidth: 8
+        access: write-only
+    KEY:
+      UNLOCK: [0xBE, "KEY to allow write access to this register"]
+
+# TRM 15.3.2.44, 15.3.2.45
+GSC:
+  LOCK:
+    _add:
+      KEY:
+        description: "Write key: the write only takes effect if KEY is 0xA551"
+        bitOffset: 16
+        bitWidth: 16
+        access: write-only
+    KEY:
+      UNLOCK: [0xA551, "Write 0xA551 to update the register"]
+  COMMIT:
+    _add:
+      KEY:
+        description: "Write key: the write only takes effect if KEY is 0xA442"
+        bitOffset: 16
+        bitWidth: 16
+        access: write-only
+    KEY:
+      UNLOCK: [0xA442, "Write 0xA442 to update the register"]
+
+# TRM 20.4.4.2, 20.4.5.4
+PWMXBAR:
+  PWMXBARLOCK:
+    _add:
+      KEY:
+        description: "Write key: the write only takes effect if KEY is 0x5A5A"
+        bitOffset: 16
+        bitWidth: 16
+        access: write-only
+    KEY:
+      UNLOCK: [0x5A5A, "Bit 0 of this register can be set only if KEY = 0x5A5A"]
+
+OUTPUTXBAR:
+  OUTPUTXBARLOCK:
+    _add:
+      KEY:
+        description: "Write key: the write only takes effect if KEY is 0x5A5A"
+        bitOffset: 16
+        bitWidth: 16
+        access: write-only
+    KEY:
+      UNLOCK: [0x5A5A, "Bit 0 of this register can be set only if KEY = 0x5A5A"]

@@ -1,0 +1,16 @@
+# `cargo xtask generate` applies these to TI's SVD after collapsing one-element arrays.
+_include:
+  - interrupts.yaml
+  - keys.yaml
+  - peripherals/aes.yaml
+  - peripherals/ecap.yaml
+  - peripherals/epi.yaml
+  - peripherals/eqep.yaml
+  - peripherals/factoryregion.yaml
+  - peripherals/gpio.yaml
+  - peripherals/mcan.yaml
+  - peripherals/nvmnw.yaml
+  - peripherals/sysctl.yaml
+  - peripherals/timg.yaml
+  - peripherals/tinielite.yaml
+  - peripherals/unicomm_i2c.yaml

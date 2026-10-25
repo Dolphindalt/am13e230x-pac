@@ -1,0 +1,7 @@
+# Values from hw_nvmnw.h.
+NVMNW:
+  CMDCTL:
+    BANKSEL:
+      _replace_enum:
+        BANK0: [1, "Bank 0"]
+        BANK1: [2, "Bank 1"]

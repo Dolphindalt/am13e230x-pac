@@ -1,0 +1,12 @@
+[package]
+name = "xtask"
+version = "0.0.0"
+edition = "2021"
+publish = false
+
+[dependencies]
+roxmltree = "0.20"
+sha2 = "0.10"
+svd-encoder = "0.14.7"
+svd-parser = "0.14.9"
+zip = { version = "6", default-features = false, features = ["deflate-flate2-zlib-rs"] }

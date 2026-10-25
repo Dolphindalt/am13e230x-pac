@@ -1,0 +1,591 @@
+# Registers and fields from hw_factoryregion.h, reset values from the TRM (SPRUJF2B, 3.16).
+_add:
+  FACTORYREGION:
+    description: "Factory-programmed device data (read-only)"
+    groupName: FACTORYREGION
+    baseAddress: 0x60111000
+    addressBlock:
+      offset: 0x0
+      size: 0x78
+      usage: registers
+FACTORYREGION:
+  _add:
+    TRACEID:
+      description: "Defined by TI, during ATE, based on wafer"
+      addressOffset: 0x0
+      size: 32
+      access: read-only
+      resetValue: 0x00000000
+      fields:
+        DATA:
+          description: "DATA"
+          bitOffset: 0
+          bitWidth: 32
+    DEVICEID:
+      description: "DEVICEID"
+      addressOffset: 0x4
+      size: 32
+      access: read-only
+      resetValue: 0x1bbb702f
+      fields:
+        ALWAYS_1:
+          description: "This is always 1"
+          bitOffset: 0
+          bitWidth: 1
+        MANUFACTURER:
+          description: "TI's JEDEC bank and company code, which is: 00000010111b"
+          bitOffset: 1
+          bitWidth: 11
+        PARTNUM:
+          description: "Part number of the device."
+          bitOffset: 12
+          bitWidth: 16
+        VERSION:
+          description: "Revision of the device. This field should change each time that the logic or mask set of the device is revised."
+          bitOffset: 28
+          bitWidth: 4
+    USERID:
+      description: "Defined by TI, depending on device spin"
+      addressOffset: 0x8
+      size: 32
+      access: read-only
+      resetValue: 0x00000000
+      fields:
+        PART:
+          description: "Bit pattern that uniquely identifying a part. This is used to identify the specific part based on the die identified in DEVICEID.device. This number shall be selected at random among the remaining numbers for DEVICEID.device such that the order of creation cannot be inferred by the number. This value does not encode the part number directly."
+          bitOffset: 0
+          bitWidth: 16
+        VARIANT:
+          description: "Bit pattern uniquely identifying a variant of a part. This is used to indicate memory or package variations of the same part number. This number shall be selected at random among the remaining numbers for the relevant combination of IDCODE.device and USERCODE.part such that the order of creation cannot be inferred by the number. The variant number does not encode specifics of the variant directly."
+          bitOffset: 16
+          bitWidth: 8
+        MINORREV:
+          description: "Monotonic increasing value indicating a new revision of the SKU that preserves compatibility with lesser minorrev values. New capability may be introduced such that lesser minorrev numbers may not be compatible with greater if the new capability is used."
+          bitOffset: 24
+          bitWidth: 4
+        MAJORREV:
+          description: "Monotonic increasing value indicating a new revision of the SKU significant enough that users of the device may have to revise PCB or or software design"
+          bitOffset: 28
+          bitWidth: 3
+        START:
+          description: "START"
+          bitOffset: 31
+          bitWidth: 1
+    BSLPIN_UART:
+      description: "BSL UART Pin Configuration"
+      addressOffset: 0xc
+      size: 32
+      access: read-only
+      resetValue: 0x00000000
+      fields:
+        UART_RXD_PAD:
+          description: "UART RXD Pad used by BSL"
+          bitOffset: 0
+          bitWidth: 8
+        UART_RXD_PF:
+          description: "UART RXD Pin Function Selection Value"
+          bitOffset: 8
+          bitWidth: 8
+        UART_TXD_PAD:
+          description: "UART TXD Pin used by BSL"
+          bitOffset: 16
+          bitWidth: 8
+        UART_TXD_PF:
+          description: "UART TXD Pin Function Selection Value"
+          bitOffset: 24
+          bitWidth: 8
+    BSLPIN_I2C:
+      description: "BSL I2C Pin Configuration"
+      addressOffset: 0x10
+      size: 32
+      access: read-only
+      resetValue: 0x00000000
+      fields:
+        I2C_SDA_PAD:
+          description: "I2C SDA Pin used by BSL"
+          bitOffset: 0
+          bitWidth: 8
+        I2C_SDA_PF:
+          description: "I2C SDA Pin Function Selection Value"
+          bitOffset: 8
+          bitWidth: 8
+        I2C_SCL_PAD:
+          description: "I2C SCL Pin used by BSL"
+          bitOffset: 16
+          bitWidth: 8
+        I2C_SCL_PF:
+          description: "I2C SCL Pin Function Selection Value"
+          bitOffset: 24
+          bitWidth: 8
+    BSLPIN_CAN:
+      description: "BSL CAN Pin Configuration"
+      addressOffset: 0x14
+      size: 32
+      access: read-only
+      resetValue: 0x00000000
+      fields:
+        CAN_RX_PAD:
+          description: "MCAN RX Pin used by BSL"
+          bitOffset: 0
+          bitWidth: 8
+        CAN_RX_PF:
+          description: "MCAN RX Pin Function Selection Value"
+          bitOffset: 8
+          bitWidth: 8
+        CAN_TX_PAD:
+          description: "MCAN TX Pin used by BSL"
+          bitOffset: 16
+          bitWidth: 8
+        CAN_TX_PF:
+          description: "MCAN TX Pin Function Selection Value"
+          bitOffset: 24
+          bitWidth: 8
+    BSLPIN_INVOKE:
+      description: "BSL Pin Invocation Configuration"
+      addressOffset: 0x18
+      size: 32
+      access: read-only
+      resetValue: 0x00000000
+      fields:
+        BSL_PAD:
+          description: "BSL Invocation Pin Number"
+          bitOffset: 0
+          bitWidth: 7
+        GPIO_LEVEL:
+          description: "GPIO Level Configuration for BSL Invocation"
+          bitOffset: 7
+          bitWidth: 1
+        GPIO_PIN_SEL:
+          description: "GPIO Pin Number in GPIO Module"
+          bitOffset: 8
+          bitWidth: 5
+        GPIO_REG_SEL:
+          description: "GPIO Module Selection"
+          bitOffset: 13
+          bitWidth: 2
+    ROM_SRAMFLASH:
+      description: "ROM_SRAMFLASH"
+      addressOffset: 0x1c
+      size: 32
+      access: read-only
+      resetValue: 0x00000000
+      fields:
+        MAINFLASH_SZ:
+          description: "The encoding of the field is that the value of the field is an integer to be interpreted as number of KBs. For eg: if the value of the field id 4, then it is 4KB, if the value is 32, then 32KB, and so on."
+          bitOffset: 0
+          bitWidth: 12
+        MAINNUMBANKS:
+          description: "Defines the number of main flash banks"
+          bitOffset: 12
+          bitWidth: 2
+        SRAM_SZ:
+          description: "The encoding of the field is that the value of the field is an integer to be interpreted as number of KBs. For eg: if the value of the field id 4, then it is 4KB, if the value is 32, then 32KB, and so on."
+          bitOffset: 16
+          bitWidth: 10
+        DATAFLASH_SZ:
+          description: "The encoding of the field is that the value of the field is an integer to be interpreted as number of KBs. For eg: if the value of the field id 4, then it is 4KB, if the value is 32, then 32KB, and so on."
+          bitOffset: 26
+          bitWidth: 6
+    PLLSTARTUP0_4_8MHZ:
+      description: "PLLSTARTUP0_4_8MHZ"
+      addressOffset: 0x20
+      size: 32
+      access: read-only
+      resetValue: 0x00000000
+      fields:
+        STARTTIME:
+          description: "Startup time from Enable to Locked Clock in resolution of 1usec"
+          bitOffset: 0
+          bitWidth: 6
+        STARTTIMELP:
+          description: "Startup time from Low Power Exit to Locked Clock in resolution of 1usec"
+          bitOffset: 8
+          bitWidth: 6
+        CPCURRENT:
+          description: "Charge Pump Current"
+          bitOffset: 16
+          bitWidth: 6
+        CAPBVAL:
+          description: "Override Value for Cap B"
+          bitOffset: 24
+          bitWidth: 5
+        CAPBOVERRIDE:
+          description: "Override Enable For Cap B"
+          bitOffset: 31
+          bitWidth: 1
+    PLLSTARTUP1_4_8MHZ:
+      description: "PLLSTARTUP1_4_8MHZ"
+      addressOffset: 0x24
+      size: 32
+      access: read-only
+      resetValue: 0x00000000
+      fields:
+        LPFCAPA:
+          description: "Loop Filter Cap A"
+          bitOffset: 0
+          bitWidth: 5
+        LPFRESA:
+          description: "Loop Filter Res A"
+          bitOffset: 8
+          bitWidth: 10
+        LPFRESC:
+          description: "Loop Filter Res C"
+          bitOffset: 24
+          bitWidth: 8
+    PLLSTARTUP0_8_16MHZ:
+      description: "PLLSTARTUP0_8_16MHZ"
+      addressOffset: 0x28
+      size: 32
+      access: read-only
+      resetValue: 0x00000000
+      fields:
+        STARTTIME:
+          description: "Startup time from Enable to Locked Clock in resolution of 1usec"
+          bitOffset: 0
+          bitWidth: 6
+        STARTTIMELP:
+          description: "Startup time from Low Power Exit to Locked Clock in resolution of 1usec"
+          bitOffset: 8
+          bitWidth: 6
+        CPCURRENT:
+          description: "Charge Pump Current"
+          bitOffset: 16
+          bitWidth: 6
+        CAPBVAL:
+          description: "Override Value for Cap B"
+          bitOffset: 24
+          bitWidth: 5
+        CAPBOVERRIDE:
+          description: "Override Enable For Cap B"
+          bitOffset: 31
+          bitWidth: 1
+    PLLSTARTUP1_8_16MHZ:
+      description: "PLLSTARTUP1_8_16MHZ"
+      addressOffset: 0x2c
+      size: 32
+      access: read-only
+      resetValue: 0x00000000
+      fields:
+        LPFCAPA:
+          description: "Loop Filter Cap A"
+          bitOffset: 0
+          bitWidth: 5
+        LPFRESA:
+          description: "Loop Filter Res A"
+          bitOffset: 8
+          bitWidth: 10
+        LPFRESC:
+          description: "Loop Filter Res C"
+          bitOffset: 24
+          bitWidth: 8
+    PLLSTARTUP0_16_32MHZ:
+      description: "PLLSTARTUP0_16_32MHZ"
+      addressOffset: 0x30
+      size: 32
+      access: read-only
+      resetValue: 0x00000000
+      fields:
+        STARTTIME:
+          description: "Startup time from Enable to Locked Clock in resolution of 1usec"
+          bitOffset: 0
+          bitWidth: 6
+        STARTTIMELP:
+          description: "Startup time from Low Power Exit to Locked Clock in resolution of 1usec"
+          bitOffset: 8
+          bitWidth: 6
+        CPCURRENT:
+          description: "Charge Pump Current"
+          bitOffset: 16
+          bitWidth: 6
+        CAPBVAL:
+          description: "Override Value for Cap B"
+          bitOffset: 24
+          bitWidth: 5
+        CAPBOVERRIDE:
+          description: "Override Enable For Cap B"
+          bitOffset: 31
+          bitWidth: 1
+    PLLSTARTUP1_16_32MHZ:
+      description: "PLLSTARTUP1_16_32MHZ"
+      addressOffset: 0x34
+      size: 32
+      access: read-only
+      resetValue: 0x00000000
+      fields:
+        LPFCAPA:
+          description: "Loop Filter Cap A"
+          bitOffset: 0
+          bitWidth: 5
+        LPFRESA:
+          description: "Loop Filter Res A"
+          bitOffset: 8
+          bitWidth: 10
+        LPFRESC:
+          description: "Loop Filter Res C"
+          bitOffset: 24
+          bitWidth: 8
+    PLLSTARTUP0_32_48MHZ:
+      description: "PLLSTARTUP0_32_48MHZ"
+      addressOffset: 0x38
+      size: 32
+      access: read-only
+      resetValue: 0x00000000
+      fields:
+        STARTTIME:
+          description: "Startup time from Enable to Locked Clock in resolution of 1usec"
+          bitOffset: 0
+          bitWidth: 6
+        STARTTIMELP:
+          description: "Startup time from Low Power Exit to Locked Clock in resolution of 1usec"
+          bitOffset: 8
+          bitWidth: 6
+        CPCURRENT:
+          description: "Charge Pump Current"
+          bitOffset: 16
+          bitWidth: 6
+        CAPBVAL:
+          description: "Override Value for Cap B"
+          bitOffset: 24
+          bitWidth: 5
+        CAPBOVERRIDE:
+          description: "Override Enable For Cap B"
+          bitOffset: 31
+          bitWidth: 1
+    PLLSTARTUP1_32_48MHZ:
+      description: "PLLSTARTUP1_32_48MHZ"
+      addressOffset: 0x3c
+      size: 32
+      access: read-only
+      resetValue: 0x00000000
+      fields:
+        LPFCAPA:
+          description: "Loop Filter Cap A"
+          bitOffset: 0
+          bitWidth: 5
+        LPFRESA:
+          description: "Loop Filter Res A"
+          bitOffset: 8
+          bitWidth: 10
+        LPFRESC:
+          description: "Loop Filter Res C"
+          bitOffset: 24
+          bitWidth: 8
+    TEMP_SENSE0:
+      description: "TEMP_SENSE0"
+      addressOffset: 0x40
+      size: 32
+      access: read-only
+      resetValue: 0x00000000
+      fields:
+        DATA:
+          description: "DATA"
+          bitOffset: 0
+          bitWidth: 32
+    BOOTCRC:
+      description: "BOOTCRC"
+      addressOffset: 0x44
+      size: 32
+      access: read-only
+      resetValue: 0x00000000
+      fields:
+        DATA:
+          description: "DATA"
+          bitOffset: 0
+          bitWidth: 32
+    ROM_VERSION:
+      description: "ROM_VERSION"
+      addressOffset: 0x4c
+      size: 32
+      access: read-only
+      resetValue: 0x01010000
+      fields:
+        ROM_PATCH_VER:
+          description: "ROM_PATCH_VER"
+          bitOffset: 0
+          bitWidth: 8
+        ROM_MINOR_VER:
+          description: "ROM_MINOR_VER"
+          bitOffset: 8
+          bitWidth: 8
+        ROM_MAJOR_VER:
+          description: "ROM_MAJOR_VER"
+          bitOffset: 16
+          bitWidth: 8
+        ROM_PG_VER:
+          description: "ROM_PG_VER"
+          bitOffset: 24
+          bitWidth: 8
+    ROM_INM_VERSION:
+      description: "ROM_INM_VERSION"
+      addressOffset: 0x50
+      size: 32
+      access: read-only
+      resetValue: 0x01010000
+      fields:
+        ROM_INM_PATCH_VER:
+          description: "ROM_INM_PATCH_VER"
+          bitOffset: 0
+          bitWidth: 8
+        ROM_INM_MINOR_VER:
+          description: "ROM_INM_MINOR_VER"
+          bitOffset: 8
+          bitWidth: 8
+        ROM_INM_MAJOR_VER:
+          description: "ROM_INM_MAJOR_VER"
+          bitOffset: 16
+          bitWidth: 8
+        ROM_INM_PG_VER:
+          description: "ROM_INM_PG_VER"
+          bitOffset: 24
+          bitWidth: 8
+    SYSPLLPARAM2:
+      description: "SYSPLLPARAM2"
+      addressOffset: 0x54
+      size: 32
+      access: read-only
+      resetValue: 0x00000000
+      fields:
+        LPFCAPC:
+          description: "LPFCAPC"
+          bitOffset: 0
+          bitWidth: 2
+        RNGIXVCOIBIASCFG:
+          description: "RNGIXVCOIBIASCFG"
+          bitOffset: 3
+          bitWidth: 1
+    SYSPLLLDOCTL:
+      description: "SYSPLLLDOCTL"
+      addressOffset: 0x58
+      size: 32
+      access: read-only
+      resetValue: 0x00000000
+      fields:
+        LDOCTLLOWV:
+          description: "LDOCTLLOWV"
+          bitOffset: 0
+          bitWidth: 16
+    SYSPLLLDOPROG:
+      description: "SYSPLLLDOPROG"
+      addressOffset: 0x5c
+      size: 32
+      access: read-only
+      resetValue: 0x00000000
+      fields:
+        LDOVOUTPROGLOWV:
+          description: "LDOVOUTPROGLOWV"
+          bitOffset: 0
+          bitWidth: 3
+    EXTREF_MP3:
+      description: "External Reference MP3 Temp Sense"
+      addressOffset: 0x60
+      size: 32
+      access: read-only
+      resetValue: 0x00000000
+      fields:
+        TSGAIN_EXTREF_MP3:
+          description: "Temperature sensor gain is recorded here"
+          bitOffset: 0
+          bitWidth: 16
+        TSOFFSET_EXTREF_MP3:
+          description: "Temperature sensor offset is recorded here"
+          bitOffset: 16
+          bitWidth: 16
+    INTREF_MP3:
+      description: "Internal Refernce Temp Sene"
+      addressOffset: 0x64
+      size: 32
+      access: read-only
+      resetValue: 0x00000000
+      fields:
+        TSGAIN_INTREF_MP3:
+          description: "Temperature sensor gain is recorded here"
+          bitOffset: 0
+          bitWidth: 16
+        TSOFFSET_INTREF_MP3:
+          description: "Temperature sensor offset is recorded here"
+          bitOffset: 16
+          bitWidth: 16
+    TSCODE_MP1:
+      description: "Tempsense Code MP1"
+      addressOffset: 0x68
+      size: 32
+      access: read-only
+      resetValue: 0x00000000
+      fields:
+        TSCODE_EXTREF_MP1:
+          description: "Temperature sensor value at 30C stored at this location"
+          bitOffset: 0
+          bitWidth: 16
+        TSCODE_INTREF_MP1:
+          description: "Temperature sensor value at 30C stored at this location"
+          bitOffset: 16
+          bitWidth: 16
+    TSCODE_MP3:
+      description: "Tempsense code MP3"
+      addressOffset: 0x6c
+      size: 32
+      access: read-only
+      resetValue: 0x00000000
+      fields:
+        TSCODE_EXTREF_MP3:
+          description: "Temperature sensor value at 125C stored at this location"
+          bitOffset: 0
+          bitWidth: 16
+        TSCODE_INTREF_MP3:
+          description: "Temperature sensor value at 125C stored at this location"
+          bitOffset: 16
+          bitWidth: 16
+    TSTEMP:
+      description: "Temperature sense TEMP"
+      addressOffset: 0x70
+      size: 32
+      access: read-only
+      resetValue: 0x00000000
+      fields:
+        TSTEMP_MP1:
+          description: "Test temperature (30C) is recorded here"
+          bitOffset: 0
+          bitWidth: 16
+        TSTEMP_MP3:
+          description: "Test temperature (125C) is recorded here"
+          bitOffset: 16
+          bitWidth: 16
+    SRAMFLASH:
+      description: "Number of banks , sram size and flash size"
+      addressOffset: 0x74
+      size: 32
+      access: read-only
+      resetValue: 0x00000000
+      fields:
+        MAINFLASH_SZ:
+          description: "For eg: if the value of the field id 4, then it is 4KB, if the value is 32, then 32KB, and so on."
+          bitOffset: 0
+          bitWidth: 12
+        MAINNUMBANKS:
+          description: "Defines the number of main flash banks"
+          bitOffset: 12
+          bitWidth: 2
+        SRAM_SZ:
+          description: "The encoding of the field is that the value of the field is an integer to be interpreted as number of KBs."
+          bitOffset: 16
+          bitWidth: 10
+        DATAFLASH_SZ:
+          description: "The encoding of the field is that the value of the field is an integer to be interpreted as number of KBs. For eg: if the value of the field id 4, then it is 4KB, if the value is 32, then 32KB, and so on."
+          bitOffset: 26
+          bitWidth: 6
+  PLLSTARTUP0_4_8MHZ:
+    CAPBOVERRIDE:
+      DISABLE: [0x0, "DISABLE"]
+      ENABLE: [0x1, "ENABLE"]
+  PLLSTARTUP0_8_16MHZ:
+    CAPBOVERRIDE:
+      DISABLE: [0x0, "DISABLE"]
+      ENABLE: [0x1, "ENABLE"]
+  PLLSTARTUP0_16_32MHZ:
+    CAPBOVERRIDE:
+      DISABLE: [0x0, "DISABLE"]
+      ENABLE: [0x1, "ENABLE"]
+  PLLSTARTUP0_32_48MHZ:
+    CAPBOVERRIDE:
+      DISABLE: [0x0, "DISABLE"]
+      ENABLE: [0x1, "ENABLE"]

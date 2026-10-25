@@ -1,0 +1,13 @@
+# Values from hw_aes.h.
+AES:
+  CTRL:
+    # Also selects the CFB width when CTRL.CFB is set. The CTR32 description covers CFB-128.
+    CTR_WIDTH:
+      _replace_enum:
+        CTR32: [0, "32-bit counter (CFB-128 mode when CFB is selected)"]
+        CTR64: [1, "64-bit counter"]
+        CTR96: [2, "96-bit counter"]
+        CTR128: [3, "128-bit counter"]
+    # OFB enable or GCM/CCM continue, depending on the mode.
+    _clear:
+      - OFB_GCM_CCM_CONT

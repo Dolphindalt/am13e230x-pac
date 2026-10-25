@@ -1,0 +1,7 @@
+# Byte-identical checkouts on every platform, for SHA256SUMS and `cargo xtask check`.
+vendor/** -text
+svd/** -text
+src/** text eol=lf linguist-generated
+/build.rs text eol=lf linguist-generated
+/device.x text eol=lf linguist-generated
+probe-rs/** text eol=lf linguist-generated

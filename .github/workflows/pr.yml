@@ -1,0 +1,27 @@
+name: Pull request
+
+on:
+  pull_request:
+    types: [opened, edited, reopened, synchronize]
+
+permissions:
+  contents: read
+
+jobs:
+  message:
+    name: Title and description form the squash commit
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          TITLE: ${{ github.event.pull_request.title }}
+          BODY: ${{ github.event.pull_request.body }}
+        run: |
+          fail() { echo "::error::$1"; exit 1; }
+          # GitHub appends " (#NNN)" to the subject.
+          [ "${#TITLE}" -le 64 ] || fail "The title is ${#TITLE} characters. The limit is 64."
+          case "$TITLE" in *.) fail "The title ends with a period." ;; esac
+          case "$BODY" in *'<!--'*) fail "The description contains an HTML comment. GitHub copies it into the commit." ;; esac
+          printf '%s\n' "$BODY" | grep -qE '^Breaking changes: .+' \
+            || fail 'The description needs a "Breaking changes: ..." line, such as "Breaking changes: none".'
+          printf '%s\n' "$BODY" | grep -vE '^Breaking changes: ' | grep -q '[^[:space:]]' \
+            || fail "The description needs a summary of what changes and why."

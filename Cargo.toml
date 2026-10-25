@@ -1,0 +1,44 @@
+[package]
+name = "am13e230x-pac"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.85"
+authors = ["Dalton Caron <dpcaron99@gmail.com>"]
+license = "BSD-3-Clause"
+repository = "https://github.com/Dolphindalt/am13e230x-pac"
+description = "Peripheral access crate for TI AM13E230x (AM13E23017/18/19) Cortex-M33 microcontrollers"
+keywords = ["no-std", "embedded", "arm", "cortex-m", "am13"]
+categories = ["embedded", "hardware-support", "no-std"]
+include = [
+    "/src/**",
+    "/build.rs",
+    "/device.x",
+    "/README.md",
+    "/LICENSE",
+    "/vendor/ti/LICENSE-DFP.txt", # Required by the BSD-3-Clause license of TI's data
+]
+
+# Required: src/ does not exist until `cargo xtask generate` runs.
+[lib]
+path = "src/lib.rs"
+
+[package.metadata.docs.rs]
+features = ["rt", "critical-section", "defmt", "debug"]
+targets = ["thumbv8m.main-none-eabihf"]
+
+[dependencies]
+cortex-m = "0.7.7"
+cortex-m-rt = { version = "0.7.5", optional = true }
+critical-section = { version = "1.2", optional = true }
+defmt = { version = "1", optional = true }
+vcell = "0.1.3"
+
+[features]
+rt = ["cortex-m-rt/device"]
+debug = []
+
+[workspace]
+members = ["xtask", "examples/lp-am13e230"]
+
+[profile.release]
+debug = true

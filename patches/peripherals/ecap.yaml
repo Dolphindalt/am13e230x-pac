@@ -1,0 +1,12 @@
+# Values from hw_ecap.h.
+ECAP0:
+  ECCTL2:
+    SYNCO_SEL:
+      _replace_enum:
+        SWSYNC: [0, "sync out signal is SWSYNC"]
+        CTR_PRD: [1, "Select CTR = PRD event to be the sync-out signal. Note: Selection CTR = PRD is meaningful only in APWM mode"]
+        DISABLE: [2, "Disable sync out signal"]
+    CAP_APWM:
+      _replace_enum:
+        CAPTURE: [0, "ECAP module operates in capture mode"]
+        APWM: [1, "ECAP module operates in APWM mode"]

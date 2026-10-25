@@ -1,0 +1,1 @@
+# Pins rustfmt to its defaults. Without this file, rustfmt reads per-user configuration.

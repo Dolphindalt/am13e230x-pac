@@ -1,0 +1,13 @@
+# Values from hw_unicommi2cc.h and hw_unicommi2ct.h.
+"UC0_I2CC,UC0_I2CT":
+  CLKDIV:
+    RATIO:
+      _replace_enum:
+        DIV_BY_1: [0, "Do not divide clock source"]
+        DIV_BY_2: [1, "Divide clock source by 2"]
+        DIV_BY_3: [2, "Divide clock source by 3"]
+        DIV_BY_4: [3, "Divide clock source by 4"]
+        DIV_BY_5: [4, "Divide clock source by 5"]
+        DIV_BY_6: [5, "Divide clock source by 6"]
+        DIV_BY_7: [6, "Divide clock source by 7"]
+        DIV_BY_8: [7, "Divide clock source by 8"]

@@ -1,0 +1,10 @@
+# Values from hw_gpio.h. `SET` collides with svd2rust's writer method, and INDEX is a bit number.
+GPIO0:
+  "SUB?CFG":
+    _clear: [INDEX]
+    INDEX: [0, 15]
+    OUTPOLICY:
+      _replace_enum:
+        SET_PINS: [0, "Selected DIO pins are set"]
+        CLEAR_PINS: [1, "Selected DIO pins are cleared"]
+        TOGGLE_PINS: [2, "Selected DIO pins are toggled"]

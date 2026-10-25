@@ -1,0 +1,10 @@
+# Values from the SVD's own descriptions. TI's names (`_3`, `_5`, `_8`) are not identifiers.
+TIMG4:
+  _clusters:
+    COUNTERREGS:
+      "IFCTL_*":
+        FP:
+          _replace_enum:
+            DIV_3: [0, "The division factor is 3"]
+            DIV_5: [1, "The division factor is 5"]
+            DIV_8: [2, "The division factor is 8"]

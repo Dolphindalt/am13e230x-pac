@@ -1,0 +1,8 @@
+# Values from hw_eqep.h.
+EQEP0:
+  QEPSTROBESEL:
+    STROBESEL:
+      _replace_enum:
+        QS_AFTER_POL_MUX: [0, "QEP Strobe after polarity mux"]
+        ADCSOCA_AS_QS: [2, "QEP Strobe after polarity mux ORed with ADCSOCA"]
+        ADCSOCB_AS_QS: [3, "QEP Strobe after polarity mux ORed with ADCSOCB"]

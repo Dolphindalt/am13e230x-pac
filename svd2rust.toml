@@ -1,0 +1,6 @@
+target = "cortex-m"
+impl_defmt = "defmt"
+impl_debug = true
+impl_debug_feature = "debug"
+reexport_core_peripherals = true
+reexport_interrupt = true

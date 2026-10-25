@@ -1,0 +1,95 @@
+# Placeholder descriptions. svd2rust emits an empty doc comment for an empty description, and clippy::empty_docs rejects it.
+# TI names the first WTYPE value `_2T`, which is not an identifier.
+# CPU_INT: offsets from hw_tinielite.h, DONE from dl_tinielite.h. Only bit 0 is implemented.
+TINIELITE:
+  _add:
+    _clusters:
+      CPU_INT:
+        description: "Interrupt registers"
+        addressOffset: 0x1020
+        registers:
+          IIDX:
+            description: "Interrupt index"
+            addressOffset: 0x0
+            size: 32
+            access: read-only
+            resetValue: 0x00000000
+            fields:
+              STAT:
+                description: "Interrupt index of the highest priority pending interrupt"
+                bitOffset: 0
+                bitWidth: 5
+          IMASK:
+            description: "Interrupt mask"
+            addressOffset: 0x8
+            size: 32
+            access: read-write
+            resetValue: 0x00000000
+            fields:
+              DONE:
+                description: "NPU done interrupt mask"
+                bitOffset: 0
+                bitWidth: 1
+          RIS:
+            description: "Raw interrupt status"
+            addressOffset: 0x10
+            size: 32
+            access: read-only
+            resetValue: 0x00000000
+            fields:
+              DONE:
+                description: "NPU done raw interrupt status"
+                bitOffset: 0
+                bitWidth: 1
+          MIS:
+            description: "Masked interrupt status"
+            addressOffset: 0x18
+            size: 32
+            access: read-only
+            resetValue: 0x00000000
+            fields:
+              DONE:
+                description: "NPU done masked interrupt status"
+                bitOffset: 0
+                bitWidth: 1
+          ISET:
+            description: "Interrupt set"
+            addressOffset: 0x20
+            size: 32
+            access: write-only
+            resetValue: 0x00000000
+            fields:
+              DONE:
+                description: "Set the NPU done interrupt"
+                bitOffset: 0
+                bitWidth: 1
+          ICLR:
+            description: "Interrupt clear"
+            addressOffset: 0x28
+            size: 32
+            access: write-only
+            resetValue: 0x00000000
+            fields:
+              DONE:
+                description: "Clear the NPU done interrupt"
+                bitOffset: 0
+                bitWidth: 1
+  _clusters:
+    CPU_INT:
+      IIDX:
+        STAT:
+          NO_INTR: [0, "No interrupt pending"]
+          DONE: [1, "NPU done interrupt pending"]
+  _modify:
+    CTL3:
+      description: CTL3 register
+    CTL4:
+      description: CTL4 register
+  CTL0:
+    WTYPE:
+      _replace_enum:
+        TERNARY: [0, "Ternary weights: +1, -1, 0"]
+        BINARY: [1, "Binary data type, +1 or -1"]
+        SIGNED_2BIT: [2, "Unsigned 8 bit data type"]
+        SIGNED_4BIT: [3, "Signed 4 bit data type"]
+        SIGNED_8BIT: [4, "Signed 8 bit data type"]

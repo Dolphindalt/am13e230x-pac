@@ -1,0 +1,5 @@
+# The generated src/ is formatted by this toolchain's rustfmt. Other versions format it differently.
+[toolchain]
+channel = "1.97.1"
+components = ["rustfmt", "clippy"]
+targets = ["thumbv8m.main-none-eabihf"]

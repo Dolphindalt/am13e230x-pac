@@ -1,0 +1,250 @@
+# Source: vendor/ti/hw_ints.h. `cargo xtask check` verifies that the two match.
+# PMCU and TMU interrupts are attached to SYSCTL. These blocks have no registers in the SVD.
+
+SYSCTL:
+  _add:
+    _interrupts:
+      PMCU_INT:
+        description: PMCU_INT interrupt
+        value: 0
+      TMU_LUF_INT:
+        description: TMU_LUF_INT interrupt
+        value: 46
+      TMU_LVF_INT:
+        description: TMU_LVF_INT interrupt
+        value: 47
+DEBUGSS:
+  _add:
+    _interrupts:
+      DEBUG_INT:
+        description: DEBUG_INT interrupt
+        value: 1
+NVMNW:
+  _add:
+    _interrupts:
+      FLASH_INT:
+        description: FLASH_INT interrupt
+        value: 2
+WWDT:
+  _add:
+    _interrupts:
+      WWDT0_INT:
+        description: WWDT0_INT interrupt
+        value: 3
+GPIO0:
+  _add:
+    _interrupts:
+      GPIO0_INT:
+        description: GPIO0_INT interrupt
+        value: 4
+GPIO1:
+  _add:
+    _interrupts:
+      GPIO1_INT:
+        description: GPIO1_INT interrupt
+        value: 5
+GPIO2:
+  _add:
+    _interrupts:
+      GPIO2_INT:
+        description: GPIO2_INT interrupt
+        value: 6
+GPIO3:
+  _add:
+    _interrupts:
+      GPIO3_INT:
+        description: GPIO3_INT interrupt
+        value: 7
+ADC0:
+  _add:
+    _interrupts:
+      ADC0_INT1_INT:
+        description: ADC0_INT1_INT interrupt
+        value: 8
+      ADC0_INT2_INT:
+        description: ADC0_INT2_INT interrupt
+        value: 9
+      ADC0_INT3_INT:
+        description: ADC0_INT3_INT interrupt
+        value: 10
+      ADC0_INT4_INT:
+        description: ADC0_INT4_INT interrupt
+        value: 11
+      ADC0_EVT_INT:
+        description: ADC0_EVT_INT interrupt
+        value: 12
+ADC1:
+  _add:
+    _interrupts:
+      ADC1_INT1_INT:
+        description: ADC1_INT1_INT interrupt
+        value: 13
+      ADC1_INT2_INT:
+        description: ADC1_INT2_INT interrupt
+        value: 14
+      ADC1_INT3_INT:
+        description: ADC1_INT3_INT interrupt
+        value: 15
+      ADC1_INT4_INT:
+        description: ADC1_INT4_INT interrupt
+        value: 16
+      ADC1_EVT_INT:
+        description: ADC1_EVT_INT interrupt
+        value: 17
+ADC2:
+  _add:
+    _interrupts:
+      ADC2_INT1_INT:
+        description: ADC2_INT1_INT interrupt
+        value: 18
+      ADC2_INT2_INT:
+        description: ADC2_INT2_INT interrupt
+        value: 19
+      ADC2_INT3_INT:
+        description: ADC2_INT3_INT interrupt
+        value: 20
+      ADC2_INT4_INT:
+        description: ADC2_INT4_INT interrupt
+        value: 21
+      ADC2_EVT_INT:
+        description: ADC2_EVT_INT interrupt
+        value: 22
+MCAN:
+  _add:
+    _interrupts:
+      MCAN0_INT:
+        description: MCAN0_INT interrupt
+        value: 23
+MCPWM0:
+  _add:
+    _interrupts:
+      MCPWM0_INT:
+        description: MCPWM0_INT interrupt
+        value: 24
+MCPWM1:
+  _add:
+    _interrupts:
+      MCPWM1_INT:
+        description: MCPWM1_INT interrupt
+        value: 25
+MCPWM2:
+  _add:
+    _interrupts:
+      MCPWM2_INT:
+        description: MCPWM2_INT interrupt
+        value: 26
+MCPWM3:
+  _add:
+    _interrupts:
+      MCPWM3_INT:
+        description: MCPWM3_INT interrupt
+        value: 27
+MCPWM4:
+  _add:
+    _interrupts:
+      MCPWM4_INT:
+        description: MCPWM4_INT interrupt
+        value: 28
+ECAP0:
+  _add:
+    _interrupts:
+      ECAP0_INT:
+        description: ECAP0_INT interrupt
+        value: 29
+ECAP1:
+  _add:
+    _interrupts:
+      ECAP1_INT:
+        description: ECAP1_INT interrupt
+        value: 30
+EQEP0:
+  _add:
+    _interrupts:
+      EQEP0_INT:
+        description: EQEP0_INT interrupt
+        value: 31
+EQEP1:
+  _add:
+    _interrupts:
+      EQEP1_INT:
+        description: EQEP1_INT interrupt
+        value: 32
+EQEP2:
+  _add:
+    _interrupts:
+      EQEP2_INT:
+        description: EQEP2_INT interrupt
+        value: 33
+UNICOMM0:
+  _add:
+    _interrupts:
+      UC0_INT:
+        description: UC0_INT interrupt
+        value: 34
+UNICOMM1:
+  _add:
+    _interrupts:
+      UC1_INT:
+        description: UC1_INT interrupt
+        value: 35
+UNICOMM2:
+  _add:
+    _interrupts:
+      UC2_INT:
+        description: UC2_INT interrupt
+        value: 36
+UNICOMM3:
+  _add:
+    _interrupts:
+      UC3_INT:
+        description: UC3_INT interrupt
+        value: 37
+UNICOMM4:
+  _add:
+    _interrupts:
+      UC4_INT:
+        description: UC4_INT interrupt
+        value: 38
+UNICOMM5:
+  _add:
+    _interrupts:
+      UC5_INT:
+        description: UC5_INT interrupt
+        value: 39
+DMA:
+  _add:
+    _interrupts:
+      DMA0_INT:
+        description: DMA0_INT interrupt
+        value: 40
+TINIELITE:
+  _add:
+    _interrupts:
+      TINIE_LITE_INT:
+        description: TINIE_LITE_INT interrupt
+        value: 41
+AES:
+  _add:
+    _interrupts:
+      AES_INT:
+        description: AES_INT interrupt
+        value: 43
+TIMG4:
+  _add:
+    _interrupts:
+      TIMG4_0_INT:
+        description: TIMG4_0_INT interrupt
+        value: 44
+TIMG12:
+  _add:
+    _interrupts:
+      TIMG12_0_INT:
+        description: TIMG12_0_INT interrupt
+        value: 45
+
+EPI0:
+  _add:
+    _interrupts:
+      EPI_INT:
+        description: EPI_INT interrupt
+        value: 42

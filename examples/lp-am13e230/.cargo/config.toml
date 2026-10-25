@@ -1,0 +1,10 @@
+[build]
+target = "thumbv8m.main-none-eabihf"
+
+[target.thumbv8m.main-none-eabihf]
+runner = "probe-rs run"
+rustflags = ["-C", "link-arg=-Tlink.x"]
+
+[env]
+PROBE_RS_CHIP = "AM13E23019"
+PROBE_RS_CHIP_DESCRIPTION_PATH = { value = "../../probe-rs/am13e230x.yaml", relative = true }

@@ -1,0 +1,102 @@
+# Field names match PWREN_* and STAT_* (`eqep0`, not `resetassert_eqep0`).
+# SECCFG registers (0x3000 to 0x3060): values from hw_sysctl.h.
+SYSCTL:
+  "RSTCTL_ASSERT_*":
+    _strip: [RESETASSERT_]
+  "RSTCTL_CLEAR_*":
+    _strip: [RESETSTKYCLR_]
+  _add:
+    FLBANKSWPPOLICY:
+      description: "Flash Bank Swap Policy"
+      addressOffset: 0x3038
+      size: 32
+      access: write-only
+      resetValue: 0x00000000
+      fields:
+        DISABLE:
+          description: "1: Disables Policy To Allow Flash Bank Swapping"
+          bitOffset: 0
+          bitWidth: 1
+        KEY:
+          description: "Must have KEY==0xCA(202) for write"
+          bitOffset: 24
+          bitWidth: 8
+    FLBANKSWP:
+      description: "Flash MAIN bank address swap"
+      addressOffset: 0x303c
+      size: 32
+      access: write-only
+      resetValue: 0x00000000
+      fields:
+        USEUPPER:
+          description: "1: Use Upper Bank as Logical 0"
+          bitOffset: 0
+          bitWidth: 1
+        KEY:
+          description: "The key value of 58h (88) must be written with USEUPPER to change the bank swap configuration."
+          bitOffset: 24
+          bitWidth: 8
+    SECSTATUS:
+      description: "Security Configuration  status"
+      addressOffset: 0x3048
+      size: 32
+      access: read-only
+      resetValue: 0x00000000
+      fields:
+        INITDONE:
+          description: "1: CSC has been completed"
+          bitOffset: 0
+          bitWidth: 1
+        CSCEXISTS:
+          description: "1: CSC Exists in the system"
+          bitOffset: 2
+          bitWidth: 1
+        FLBANKSWPPOLICY:
+          description: "1: Upper and Lower Banks allowed to be swapped"
+          bitOffset: 10
+          bitWidth: 1
+        FLBANKSWP:
+          description: "1: Upper and Lower Banks have been swapped"
+          bitOffset: 12
+          bitWidth: 1
+    INITDONE:
+      description: "INITCODE PASS"
+      addressOffset: 0x3060
+      size: 32
+      access: write-only
+      resetValue: 0x00000000
+      fields:
+        PASS:
+          description: "INITCODE writes 1 for PASS, left unwritten a timeout will occur if not blocked"
+          bitOffset: 0
+          bitWidth: 1
+        KEY:
+          description: "Must have KEY==0x9D(157) for write"
+          bitOffset: 24
+          bitWidth: 8
+  FLBANKSWPPOLICY:
+    KEY:
+      UNLOCK: [0xca, "Write Key"]
+    DISABLE:
+      TRUE: [0x1, "Disallow Bank Swap"]
+  FLBANKSWP:
+    KEY:
+      UNLOCK: [0x58, "Issue write"]
+    USEUPPER:
+      DISABLE: [0x0, "Normal (default) memory map addressing scheme"]
+      ENABLE: [0x1, "Flash upper region address space swapped with lower region"]
+  SECSTATUS:
+    FLBANKSWPPOLICY:
+      DISABLED: [0x0, "DISABLED"]
+      ENABLED: [0x1, "ENABLED"]
+    INITDONE:
+      NO: [0x0, "INIT is not yet done"]
+      YES: [0x1, "INIT is done"]
+    CSCEXISTS:
+      NO: [0x0, "System does not have a CSC"]
+      YES: [0x1, "System does have a CSC"]
+  INITDONE:
+    KEY:
+      UNLOCK: [0x9d, "Issue Reset"]
+    PASS:
+      TRUE: [0x1, "INITCODE PASS"]

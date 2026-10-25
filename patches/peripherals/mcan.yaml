@@ -1,0 +1,7 @@
+# Named after the "MCAN core" in TI's register descriptions (hw_mcan.h).
+# `MCAN` triggers clippy::module_inception (`mcan::mcan`). `CORE` shadows the `core` crate
+# under `use mcan::*`.
+MCAN:
+  _modify:
+    MCAN:
+      name: MCAN_CORE

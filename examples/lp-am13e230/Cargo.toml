@@ -1,0 +1,11 @@
+[package]
+name = "lp-am13e230-examples"
+version = "0.0.0"
+edition = "2021"
+publish = false
+description = "Examples for the LP-AM13E230 LaunchPad (AM13E23019)"
+
+[dependencies]
+am13e230x-pac = { path = "../..", features = ["rt", "critical-section"] }
+cortex-m = { version = "0.7.7", features = ["critical-section-single-core"] }
+cortex-m-rt = "0.7.5"

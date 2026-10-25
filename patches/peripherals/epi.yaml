@@ -1,0 +1,1291 @@
+# Registers and fields from hw_epi.h, reset values from the TRM (SPRUJF2B, 16.6). The reset
+# values at offsets 0x10, 0x14 and 0x310 to 0x31C are measured on an AM13E23019.
+# The mode registers of the four EPI modes share offsets, as alternate registers.
+_add:
+  EPI0:
+    description: "External peripheral interface"
+    groupName: EPI
+    baseAddress: 0x4001a000
+    addressBlock:
+      offset: 0x0
+      size: 0x364
+      usage: registers
+EPI0:
+  _add:
+    CFG:
+      description: "EPI Configuration"
+      addressOffset: 0x0
+      size: 32
+      access: read-write
+      resetValue: 0x00000000
+      fields:
+        MODE:
+          description: "Mode Select"
+          bitOffset: 0
+          bitWidth: 4
+        BLKEN:
+          description: "Block Enable"
+          bitOffset: 4
+          bitWidth: 1
+        INTDIV:
+          description: "Integer Clock Divider Enable"
+          bitOffset: 8
+          bitWidth: 1
+    BAUD:
+      description: "EPI Main Baud Rate"
+      addressOffset: 0x4
+      size: 32
+      access: read-write
+      resetValue: 0x00000000
+      fields:
+        COUNT0:
+          description: "Baud Rate Counter 0"
+          bitOffset: 0
+          bitWidth: 16
+        COUNT1:
+          description: "Baud Rate Counter 1"
+          bitOffset: 16
+          bitWidth: 16
+    BAUD2:
+      description: "EPI Main Baud Rate"
+      addressOffset: 0x8
+      size: 32
+      access: read-write
+      resetValue: 0x00000000
+      fields:
+        COUNT0:
+          description: "CS2n Baud Rate Counter 0"
+          bitOffset: 0
+          bitWidth: 16
+        COUNT1:
+          description: "CS3n Baud Rate Counter 1"
+          bitOffset: 16
+          bitWidth: 16
+    GPCFG:
+      description: "EPI General-Purpose Configuration"
+      addressOffset: 0x10
+      size: 32
+      access: read-write
+      resetValue: 0x00000000
+      fields:
+        DSIZE:
+          description: "Size of Data Bus"
+          bitOffset: 0
+          bitWidth: 2
+        ASIZE:
+          description: "Address Bus Size"
+          bitOffset: 4
+          bitWidth: 2
+        RD2CYC:
+          description: "2-Cycle Reads"
+          bitOffset: 18
+          bitWidth: 1
+        WR2CYC:
+          description: "2-Cycle Writes"
+          bitOffset: 19
+          bitWidth: 1
+        FRMCNT:
+          description: "Frame Count"
+          bitOffset: 22
+          bitWidth: 4
+        FRM50:
+          description: "50/50 Frame"
+          bitOffset: 26
+          bitWidth: 1
+        RDYEN:
+          description: "Ready Enable"
+          bitOffset: 28
+          bitWidth: 1
+        CLKGATE:
+          description: "Clock Gated"
+          bitOffset: 30
+          bitWidth: 1
+        CLKPIN:
+          description: "Clock Pin"
+          bitOffset: 31
+          bitWidth: 1
+    SDRAMCFG:
+      description: "EPI SDRAM Configuration"
+      addressOffset: 0x10
+      size: 32
+      access: read-write
+      resetValue: 0x00000000
+      fields:
+        SIZE:
+          description: "Size of SDRAM"
+          bitOffset: 0
+          bitWidth: 2
+        SLEEP:
+          description: "Sleep Mode"
+          bitOffset: 9
+          bitWidth: 1
+        RFSH:
+          description: "Refresh Counter"
+          bitOffset: 16
+          bitWidth: 11
+        FREQ:
+          description: "EPI Frequency Range."
+          bitOffset: 30
+          bitWidth: 2
+      alternateRegister: GPCFG
+    HB8CFG:
+      description: "EPI Host-Bus 8 Configuration"
+      addressOffset: 0x10
+      size: 32
+      access: read-write
+      resetValue: 0x00000000
+      fields:
+        MODE:
+          description: "Host Bus Sub-Mode"
+          bitOffset: 0
+          bitWidth: 2
+        RDWS:
+          description: "Read Wait States"
+          bitOffset: 4
+          bitWidth: 2
+        WRWS:
+          description: "Write Wait States"
+          bitOffset: 6
+          bitWidth: 2
+        MAXWAIT:
+          description: "Maximum Wait"
+          bitOffset: 8
+          bitWidth: 8
+        ALEHIGH:
+          description: "ALE Strobe Polarity"
+          bitOffset: 19
+          bitWidth: 1
+        RDHIGH:
+          description: "READ Strobe Polarity"
+          bitOffset: 20
+          bitWidth: 1
+        WRHIGH:
+          description: "WRITE Strobe Polarity"
+          bitOffset: 21
+          bitWidth: 1
+        XFEEN:
+          description: "External FIFO EMPTY Enable"
+          bitOffset: 22
+          bitWidth: 1
+        XFFEN:
+          description: "External FIFO FULL Enable"
+          bitOffset: 23
+          bitWidth: 1
+        IRDYINV:
+          description: "Input Ready Invert"
+          bitOffset: 27
+          bitWidth: 1
+        RDYEN:
+          description: "Input Ready Enable"
+          bitOffset: 28
+          bitWidth: 1
+        CLKINV:
+          description: "Invert Output Clock Enable"
+          bitOffset: 29
+          bitWidth: 1
+        CLKGATEI:
+          description: "Clock Gated when Idle"
+          bitOffset: 30
+          bitWidth: 1
+        CLKGATE:
+          description: "Clock Gated"
+          bitOffset: 31
+          bitWidth: 1
+      alternateRegister: GPCFG
+    HB16CFG:
+      description: "EPI Host-Bus 16 Configuration"
+      addressOffset: 0x10
+      size: 32
+      access: read-write
+      resetValue: 0x00000000
+      fields:
+        MODE:
+          description: "Host Bus Sub-Mode"
+          bitOffset: 0
+          bitWidth: 2
+        BSEL:
+          description: "Byte Select Configuration"
+          bitOffset: 2
+          bitWidth: 1
+        RDWS:
+          description: "Read Wait States"
+          bitOffset: 4
+          bitWidth: 2
+        WRWS:
+          description: "Write Wait States"
+          bitOffset: 6
+          bitWidth: 2
+        MAXWAIT:
+          description: "Maximum Wait"
+          bitOffset: 8
+          bitWidth: 8
+        BURST:
+          description: "Burst Mode"
+          bitOffset: 16
+          bitWidth: 1
+        RDCRE:
+          description: "PSRAM Configuration Register Read"
+          bitOffset: 17
+          bitWidth: 1
+        WRCRE:
+          description: "PSRAM Configuration Register Write"
+          bitOffset: 18
+          bitWidth: 1
+        ALEHIGH:
+          description: "ALE Strobe Polarity"
+          bitOffset: 19
+          bitWidth: 1
+        RDHIGH:
+          description: "READ Strobe Polarity"
+          bitOffset: 20
+          bitWidth: 1
+        WRHIGH:
+          description: "WRITE Strobe Polarity"
+          bitOffset: 21
+          bitWidth: 1
+        XFEEN:
+          description: "External FIFO EMPTY Enable"
+          bitOffset: 22
+          bitWidth: 1
+        XFFEN:
+          description: "External FIFO FULL Enable"
+          bitOffset: 23
+          bitWidth: 1
+        IRDYINV:
+          description: "Input Ready Invert"
+          bitOffset: 27
+          bitWidth: 1
+        RDYEN:
+          description: "Input Ready Enable"
+          bitOffset: 28
+          bitWidth: 1
+        CLKINV:
+          description: "Invert Output Clock Enable"
+          bitOffset: 29
+          bitWidth: 1
+        CLKGATEI:
+          description: "Clock Gated Idle"
+          bitOffset: 30
+          bitWidth: 1
+        CLKGATE:
+          description: "Clock Gated"
+          bitOffset: 31
+          bitWidth: 1
+      alternateRegister: GPCFG
+    HB8CFG2:
+      description: "EPI Host-Bus 8 Configuration 2"
+      addressOffset: 0x14
+      size: 32
+      access: read-write
+      resetValue: 0x00000000
+    HB16CFG2:
+      description: "EPI Host-Bus 16 Configuration 2"
+      addressOffset: 0x14
+      size: 32
+      access: read-write
+      resetValue: 0x00000000
+      alternateRegister: HB8CFG2
+    ADDRMAP:
+      description: "EPI Address Map"
+      addressOffset: 0x1c
+      size: 32
+      access: read-write
+      resetValue: 0x00000000
+      fields:
+        ERADR:
+          description: "External RAM Address"
+          bitOffset: 0
+          bitWidth: 2
+        ERSZ:
+          description: "External RAM Size"
+          bitOffset: 2
+          bitWidth: 2
+        EPADR:
+          description: "External Peripheral Address"
+          bitOffset: 4
+          bitWidth: 2
+        EPSZ:
+          description: "External Peripheral Size"
+          bitOffset: 6
+          bitWidth: 2
+        ECADR:
+          description: "External Code Address"
+          bitOffset: 8
+          bitWidth: 2
+        ECSZ:
+          description: "External Code Size"
+          bitOffset: 10
+          bitWidth: 2
+    RSIZE0:
+      description: "EPI Read Size 0"
+      addressOffset: 0x20
+      size: 32
+      access: read-write
+      resetValue: 0x00000003
+      fields:
+        SIZE:
+          description: "Current Size"
+          bitOffset: 0
+          bitWidth: 2
+    RADDR0:
+      description: "EPI Read Address 0"
+      addressOffset: 0x24
+      size: 32
+      access: read-write
+      resetValue: 0x00000000
+      fields:
+        ADDR:
+          description: "Current Address"
+          bitOffset: 0
+          bitWidth: 32
+    RPSTD0:
+      description: "EPI Non-Blocking Read Data 0"
+      addressOffset: 0x28
+      size: 32
+      access: read-write
+      resetValue: 0x00000000
+      fields:
+        POSTCNT:
+          description: "Post Count"
+          bitOffset: 0
+          bitWidth: 13
+    RSIZE1:
+      description: "EPI Read Size 1"
+      addressOffset: 0x30
+      size: 32
+      access: read-write
+      resetValue: 0x00000003
+      fields:
+        SIZE:
+          description: "Current Size"
+          bitOffset: 0
+          bitWidth: 2
+    RADDR1:
+      description: "EPI Read Address 1"
+      addressOffset: 0x34
+      size: 32
+      access: read-write
+      resetValue: 0x00000000
+      fields:
+        ADDR:
+          description: "Current Address"
+          bitOffset: 0
+          bitWidth: 32
+    RPSTD1:
+      description: "EPI Non-Blocking Read Data 1"
+      addressOffset: 0x38
+      size: 32
+      access: read-write
+      resetValue: 0x00000000
+      fields:
+        POSTCNT:
+          description: "Post Count"
+          bitOffset: 0
+          bitWidth: 13
+    STAT:
+      description: "EPI Status"
+      addressOffset: 0x60
+      size: 32
+      access: read-write
+      resetValue: 0x00000000
+      fields:
+        ACTIVE:
+          description: "Register Active"
+          bitOffset: 0
+          bitWidth: 1
+        NBRBUSY:
+          description: "Non-Blocking Read Busy"
+          bitOffset: 4
+          bitWidth: 1
+        WBUSY:
+          description: "Write Busy"
+          bitOffset: 5
+          bitWidth: 1
+        INITSEQ:
+          description: "Initialization Sequence"
+          bitOffset: 6
+          bitWidth: 1
+        XFEMPTY:
+          description: "External FIFO Empty"
+          bitOffset: 7
+          bitWidth: 1
+        XFFULL:
+          description: "External FIFO Full"
+          bitOffset: 8
+          bitWidth: 1
+        CELOW:
+          description: "Clock Enable Low"
+          bitOffset: 9
+          bitWidth: 1
+    RFIFOCNT:
+      description: "EPI Read FIFO Count"
+      addressOffset: 0x6c
+      size: 32
+      access: read-write
+      resetValue: 0x00000000
+      resetMask: 0xfffffff0
+      fields:
+        COUNT:
+          description: "FIFO Count."
+          bitOffset: 0
+          bitWidth: 4
+    READFIFO0:
+      description: "EPI Read FIFO 0"
+      addressOffset: 0x70
+      size: 32
+      access: read-write
+      resetValue: 0x00000000
+      resetMask: 0x0fffffff
+      fields:
+        DATA:
+          description: "Reads Data."
+          bitOffset: 0
+          bitWidth: 32
+    READFIFO1:
+      description: "EPI Read FIFO 1"
+      addressOffset: 0x74
+      size: 32
+      access: read-write
+      resetValue: 0x00000000
+      resetMask: 0x0fffffff
+      fields:
+        DATA:
+          description: "Reads Data."
+          bitOffset: 0
+          bitWidth: 32
+    READFIFO2:
+      description: "EPI Read FIFO 2"
+      addressOffset: 0x78
+      size: 32
+      access: read-write
+      resetValue: 0x00000000
+      resetMask: 0x0fffffff
+      fields:
+        DATA:
+          description: "Reads Data."
+          bitOffset: 0
+          bitWidth: 32
+    READFIFO3:
+      description: "EPI Read FIFO 3"
+      addressOffset: 0x7c
+      size: 32
+      access: read-write
+      resetValue: 0x00000000
+      resetMask: 0x0fffffff
+      fields:
+        DATA:
+          description: "Reads Data."
+          bitOffset: 0
+          bitWidth: 32
+    READFIFO4:
+      description: "EPI Read FIFO 4"
+      addressOffset: 0x80
+      size: 32
+      access: read-write
+      resetValue: 0x00000000
+      resetMask: 0x0fffffff
+      fields:
+        DATA:
+          description: "Reads Data."
+          bitOffset: 0
+          bitWidth: 32
+    READFIFO5:
+      description: "EPI Read FIFO 5"
+      addressOffset: 0x84
+      size: 32
+      access: read-write
+      resetValue: 0x00000000
+      resetMask: 0x0fffffff
+      fields:
+        DATA:
+          description: "Reads Data."
+          bitOffset: 0
+          bitWidth: 32
+    READFIFO6:
+      description: "EPI Read FIFO 6"
+      addressOffset: 0x88
+      size: 32
+      access: read-write
+      resetValue: 0x00000000
+      resetMask: 0x0fffffff
+      fields:
+        DATA:
+          description: "Reads Data."
+          bitOffset: 0
+          bitWidth: 32
+    READFIFO7:
+      description: "EPI Read FIFO 7"
+      addressOffset: 0x8c
+      size: 32
+      access: read-write
+      resetValue: 0x00000000
+      resetMask: 0x0fffffff
+      fields:
+        DATA:
+          description: "Reads Data."
+          bitOffset: 0
+          bitWidth: 32
+    FIFOLVL:
+      description: "EPI FIFO Level Selects"
+      addressOffset: 0x200
+      size: 32
+      access: read-write
+      resetValue: 0x00000033
+      fields:
+        RDFIFO:
+          description: "Read FIFO"
+          bitOffset: 0
+          bitWidth: 3
+        WRFIFO:
+          description: "Write FIFO"
+          bitOffset: 4
+          bitWidth: 3
+        RSERR:
+          description: "Read Stall Error"
+          bitOffset: 16
+          bitWidth: 1
+        WFERR:
+          description: "Write Full Error"
+          bitOffset: 17
+          bitWidth: 1
+    WFIFOCNT:
+      description: "EPI Write FIFO Count"
+      addressOffset: 0x204
+      size: 32
+      access: read-write
+      resetValue: 0x00000004
+      fields:
+        WTAV:
+          description: "Available Write Transactions."
+          bitOffset: 0
+          bitWidth: 3
+    DMATXCNT:
+      description: "EPI DMA Transmit Count"
+      addressOffset: 0x208
+      size: 32
+      access: read-write
+      resetValue: 0x00000000
+      fields:
+        TXCNT:
+          description: "DMA Count."
+          bitOffset: 0
+          bitWidth: 16
+    IM:
+      description: "EPI Interrupt Mask"
+      addressOffset: 0x210
+      size: 32
+      access: read-write
+      resetValue: 0x00000000
+      fields:
+        ERRIM:
+          description: "Error Interrupt Mask"
+          bitOffset: 0
+          bitWidth: 1
+        RDIM:
+          description: "Read FIFO Full Interrupt Mask"
+          bitOffset: 1
+          bitWidth: 1
+        WRIM:
+          description: "Write FIFO Empty Interrupt Mask"
+          bitOffset: 2
+          bitWidth: 1
+        DMARDIM:
+          description: "Read uDMA Interrupt Mask"
+          bitOffset: 3
+          bitWidth: 1
+        DMAWRIM:
+          description: "Write uDMA Interrupt Mask"
+          bitOffset: 4
+          bitWidth: 1
+    RIS:
+      description: "EPI Raw Interrupt Status"
+      addressOffset: 0x214
+      size: 32
+      access: read-write
+      resetValue: 0x00000004
+      fields:
+        ERRRIS:
+          description: "Error Raw Interrupt Stat Error Raw Interrupt Status"
+          bitOffset: 0
+          bitWidth: 1
+        RDRIS:
+          description: "Read Raw Interrupt Status"
+          bitOffset: 1
+          bitWidth: 1
+        WRRIS:
+          description: "Write Raw Interrupt Status"
+          bitOffset: 2
+          bitWidth: 1
+        DMARDRIS:
+          description: "Read uDMA Raw Interrupt Status"
+          bitOffset: 3
+          bitWidth: 1
+        DMAWRRIS:
+          description: "Write uDMA Raw Interrupt Status"
+          bitOffset: 4
+          bitWidth: 1
+    MIS:
+      description: "EPI Masked Interrupt Status"
+      addressOffset: 0x218
+      size: 32
+      access: read-write
+      resetValue: 0x00000000
+      fields:
+        ERRMIS:
+          description: "Error Masked Interrupt Status"
+          bitOffset: 0
+          bitWidth: 1
+        RDMIS:
+          description: "Read Masked Interrupt Status"
+          bitOffset: 1
+          bitWidth: 1
+        WRMIS:
+          description: "Write Masked Interrupt Status"
+          bitOffset: 2
+          bitWidth: 1
+        DMARDMIS:
+          description: "Read uDMA Masked Interrupt Status."
+          bitOffset: 3
+          bitWidth: 1
+        DMAWRMIS:
+          description: "Write uDMA Masked Interrupt Status."
+          bitOffset: 4
+          bitWidth: 1
+    EISC:
+      description: "EPI Error and Interrupt Status and Clear"
+      addressOffset: 0x21c
+      size: 32
+      access: read-write
+      resetValue: 0x00000000
+      fields:
+        TOUT:
+          description: "Timeout Error."
+          bitOffset: 0
+          bitWidth: 1
+        RSTALL:
+          description: "Read Stalled Error."
+          bitOffset: 1
+          bitWidth: 1
+        WTFULL:
+          description: "Write FIFO Full Error."
+          bitOffset: 2
+          bitWidth: 1
+        DMARDIC:
+          description: "Read uDMA Interrupt Clear."
+          bitOffset: 3
+          bitWidth: 1
+        DMAWRIC:
+          description: "Write uDMA Interrupt Clear."
+          bitOffset: 4
+          bitWidth: 1
+    HB8CFG3:
+      description: "EPI Host-Bus 8 Configuration 3"
+      addressOffset: 0x308
+      size: 32
+      access: read-write
+      resetValue: 0x00080000
+    HB16CFG3:
+      description: "EPI Host-Bus 16 Configuration 3"
+      addressOffset: 0x308
+      size: 32
+      access: read-write
+      resetValue: 0x00080000
+      alternateRegister: HB8CFG3
+    HB8CFG4:
+      description: "EPI Host-Bus 8 Configuration 4"
+      addressOffset: 0x30c
+      size: 32
+      access: read-write
+      resetValue: 0x00080000
+    HB16CFG4:
+      description: "EPI Host-Bus 16 Configuration 4"
+      addressOffset: 0x30c
+      size: 32
+      access: read-write
+      resetValue: 0x00080000
+      alternateRegister: HB8CFG4
+    HB8TIME:
+      description: "EPI Host-Bus 8 Timing Extension"
+      addressOffset: 0x310
+      size: 32
+      access: read-write
+      resetValue: 0x00022000
+    HB16TIME:
+      description: "EPI Host-Bus 16 Timing Extension"
+      addressOffset: 0x310
+      size: 32
+      access: read-write
+      resetValue: 0x00022000
+      alternateRegister: HB8TIME
+    HB8TIME2:
+      description: "EPI Host-Bus 8 Timing Extension"
+      addressOffset: 0x314
+      size: 32
+      access: read-write
+      resetValue: 0x00022000
+      fields:
+        RDWSM:
+          description: "CS1n Read Wait State Minus One"
+          bitOffset: 0
+          bitWidth: 1
+        WRWSM:
+          description: "CS1n Write Wait State Minus One"
+          bitOffset: 4
+          bitWidth: 1
+        CAPWIDTH:
+          description: "CS1n Inter-transfer Capture Width"
+          bitOffset: 12
+          bitWidth: 2
+        IRDYDLY:
+          description: "CS1n Input Ready Delay"
+          bitOffset: 24
+          bitWidth: 2
+    HB16TIME2:
+      description: "EPI Host-Bus 16 Timing Extension"
+      addressOffset: 0x314
+      size: 32
+      access: read-write
+      resetValue: 0x00022000
+      fields:
+        RDWSM:
+          description: "CS1n Read Wait State Minus One"
+          bitOffset: 0
+          bitWidth: 1
+        WRWSM:
+          description: "CS1n Write Wait State Minus One"
+          bitOffset: 4
+          bitWidth: 1
+        CAPWIDTH:
+          description: "CS1n Inter-transfer Capture Width"
+          bitOffset: 12
+          bitWidth: 2
+        PSRAMSZ:
+          description: "PSRAM Row Size"
+          bitOffset: 16
+          bitWidth: 3
+        IRDYDLY:
+          description: "CS1n Input Ready Delay"
+          bitOffset: 24
+          bitWidth: 2
+      alternateRegister: HB8TIME2
+    HB8TIME3:
+      description: "EPI Host-Bus 8 Timing Extension"
+      addressOffset: 0x318
+      size: 32
+      access: read-write
+      resetValue: 0x00022000
+      fields:
+        RDWSM:
+          description: "CS2n Read Wait State Minus One"
+          bitOffset: 0
+          bitWidth: 1
+        WRWSM:
+          description: "CS2n Write Wait State Minus One"
+          bitOffset: 4
+          bitWidth: 1
+        CAPWIDTH:
+          description: "CS2n Inter-transfer Capture Width"
+          bitOffset: 12
+          bitWidth: 2
+        IRDYDLY:
+          description: "CS2n Input Ready Delay"
+          bitOffset: 24
+          bitWidth: 2
+    HB16TIME3:
+      description: "EPI Host-Bus 16 Timing Extension"
+      addressOffset: 0x318
+      size: 32
+      access: read-write
+      resetValue: 0x00022000
+      fields:
+        RDWSM:
+          description: "CS2n Read Wait State Minus One"
+          bitOffset: 0
+          bitWidth: 1
+        WRWSM:
+          description: "CS2n Write Wait State Minus One"
+          bitOffset: 4
+          bitWidth: 1
+        CAPWIDTH:
+          description: "CS2n Inter-transfer Capture Width"
+          bitOffset: 12
+          bitWidth: 2
+        PSRAMSZ:
+          description: "PSRAM Row Size"
+          bitOffset: 16
+          bitWidth: 3
+        IRDYDLY:
+          description: "CS2n Input Ready Delay"
+          bitOffset: 24
+          bitWidth: 2
+      alternateRegister: HB8TIME3
+    HB8TIME4:
+      description: "EPI Host-Bus 8 Timing Extension"
+      addressOffset: 0x31c
+      size: 32
+      access: read-write
+      resetValue: 0x00022000
+      fields:
+        RDWSM:
+          description: "CS3n Read Wait State Minus One"
+          bitOffset: 0
+          bitWidth: 1
+        WRWSM:
+          description: "CS3n Write Wait State Minus One"
+          bitOffset: 4
+          bitWidth: 1
+        CAPWIDTH:
+          description: "CS3n Inter-transfer Capture Width"
+          bitOffset: 12
+          bitWidth: 2
+        IRDYDLY:
+          description: "CS3n Input Ready Delay"
+          bitOffset: 24
+          bitWidth: 2
+    HB16TIME4:
+      description: "EPI Host-Bus 16 Timing Extension"
+      addressOffset: 0x31c
+      size: 32
+      access: read-write
+      resetValue: 0x00022000
+      fields:
+        RDWSM:
+          description: "CS3n Read Wait State Minus One."
+          bitOffset: 0
+          bitWidth: 1
+        WRWSM:
+          description: "CS3n Write Wait State Minus One."
+          bitOffset: 4
+          bitWidth: 1
+        CAPWIDTH:
+          description: "CS3n Inter-transfer Capture Width."
+          bitOffset: 12
+          bitWidth: 2
+        PSRAMSZ:
+          description: "PSRAM Row Size."
+          bitOffset: 16
+          bitWidth: 3
+        IRDYDLY:
+          description: "CS3n Input Ready Delay"
+          bitOffset: 24
+          bitWidth: 2
+      alternateRegister: HB8TIME4
+    HBPSRAM:
+      description: "EPI Host-Bus PSRAM"
+      addressOffset: 0x360
+      size: 32
+      access: read-write
+      resetValue: 0x00000000
+      fields:
+        CR:
+          description: "PSRAM Config Register."
+          bitOffset: 0
+          bitWidth: 21
+  CFG:
+    MODE:
+      CFG_MODE_GP: [0x0, "General Purpose. General-Purpose mode. Control, address, and data pins are configured using the EPIGPCFG and EPIGPCFG2 registers."]
+      CFG_MODE_SDRAM: [0x1, "SDRAM. Supports SDR SDRAM. Control, address, and data pins are configured using the EPISDRAMCFG register."]
+      CFG_MODE_HB8: [0x2, "8-Bit Host-Bus (HB8). Host-bus 8-bit interface (also known as the MCU interface). Control, address, and data pins are configured using the EPIHB8CFG and EPIHB8CFG2 registers."]
+      CFG_MODE_HB16: [0x3, "16-Bit Host-Bus (HB16). Host-bus 16-bit interface (standard SRAM). Control, address, and data pins are configured using the EPIHB16CFG and EPIHB16CFG2 registers."]
+    BLKEN:
+      CFG_EPI_DISABLE: [0x0, "The EPI controller is disabled."]
+      CFG_EPI_ENABLE: [0x1, "The EPI controller is enabled."]
+    INTDIV:
+      CFG_BAUD_DIVIDE_FORMULA: [0x0, "EPIBAUD register values create formula clock divide."]
+      CFG_BAUD_DIVIDE_INTEGER: [0x1, "EPIBAUD register values create integer clock divide."]
+  GPCFG:
+    DSIZE:
+      GPCFG_BUS_SIZE_8: [0x0, "8 bits wide (EPI0S0 to EPI0S7)"]
+      GPCFG_BUS_SIZE_16: [0x1, "16 bits wide (EPI0S0 to EPI0S15)"]
+      GPCFG_BUS_SIZE_24: [0x2, "24 bits wide (EPI0S0 to EPI0S23)"]
+      GPCFG_BUS_SIZE_32: [0x3, "32 bits wide (EPI0S0 to EPI0S31)This size may not be used with an EPI clock. This value is normally used for acquisition input and actuator control as well as other general-purpose uses that require 32 bits per direction."]
+    ASIZE:
+      GPCFG_ADDR_SIZE_NONE: [0x0, "No address"]
+      GPCFG_ADDR_SIZE_4: [0x1, "Up to 4 bits wide."]
+      GPCFG_ADDR_SIZE_12: [0x2, "Up to 12 bits wide. This size cannot be used with 24-bit data."]
+      GPCFG_ADDR_SIZE_20: [0x3, "Up to 20 bits wide. This size cannot be used with data sizes other than 8."]
+    RD2CYC:
+      GPCFG_READ_ONE_CYCLE: [0x0, "Data is captured on the EPI clock cycle with READ strobe asserted."]
+      GPCFG_READ_TWO_CYCLE: [0x1, "Reads are two EPI clock cycles, with address on one EPI clock cycle (with the RD strobe asserted) and data captured on the following EPI clock cycle (with the RD strobe de-asserted). The next address (if any) is in the cycle following."]
+    WR2CYC:
+      GPCFG_WRITE_ONE_CYCLE: [0x0, "Data is output on the same EPI clock cycle as the address."]
+      GPCFG_WRITE_TWO_CYCLE: [0x1, "Writes are two EPI clock cycles long, with address on one EPI clock cycle (with the WR strobe asserted) and data written on the following EPI clock cycle (with WR strobe de-asserted). The next address (if any) is in the cycle following."]
+    FRM50:
+      GPCFG_FRAME_PULSE: [0x0, "The FRAME signal is output as a single pulse, and then held low for the count."]
+      GPCFG_FRAME_50_50: [0x1, "The FRAME signal is output as 50/50 duty cycle using count (see FRMCNT)."]
+    RDYEN:
+      GPCFG_IRDY_NOT_USED: [0x0, "The external peripheral does not drive an iRDY signal and is assumed to be ready always."]
+      GPCFG_IRDY_ENABLE: [0x1, "The external peripheral drives an iRDY signal into pin EPI0S27."]
+    CLKGATE:
+      GPCFG_CLK_FREE_RUN_IDLE: [0x0, "The EPI clock is free running."]
+      GPCFG_CLK_FORCE_LOW_IDLE: [0x1, "The EPI clock is output only when there is data to write or read (current transaction); otherwise the EPI clock is held low."]
+    CLKPIN:
+      GPCFG_CLK_DISABLE: [0x0, "No clock output."]
+      GPCFG_CLK_ENABLE: [0x1, "EPI0S31 functions as the EPI clock output."]
+  SDRAMCFG:
+    SIZE:
+      SDRAMCFG_SIZE_64MBITS: [0x0, "64 megabits (8MB)"]
+      SDRAMCFG_SIZE_128MBITS: [0x1, "128 megabits (16MB)"]
+      SDRAMCFG_SIZE_256MBITS: [0x2, "256 megabits (32MB)"]
+      SDRAMCFG_SIZE_512MBITS: [0x3, "512 megabits (64MB)"]
+    SLEEP:
+      SDRAMCFG_SLEEP_NONE: [0x0, "No effect."]
+      SDRAMCFG_SLEEP_ON: [0x1, "The SDRAM is put into low power state, but is self-refreshed."]
+    FREQ:
+      SDRAMCFG_0_TO_15_MHZ: [0x0, "0 to 15 MHz"]
+      SDRAMCFG_15_TO_30_MHZ: [0x1, "15 to 30 MHz"]
+      SDRAMCFG_30_TO_50_MHZ: [0x2, "30 to 50 MHz"]
+      SDRAMCFG_50_TO_100_MHZ: [0x3, "50 to 100 MHz"]
+  HB8CFG:
+    MODE:
+      HB8CFG_ADMUX: [0x0, "ADMUX - AD[7:0]. Data and Address are muxed."]
+      HB8CFG_ADNONMUX: [0x1, "ADNONMUX - D[7:0]. Data and address are separate."]
+      HB8CFG_CONT_READ: [0x2, "Continuous Read - D[7:0]. This mode is the same as ADNONMUX, but uses address switch for multiple reads instead of OEn strobing."]
+      HB8CFG_XFIFO: [0x3, "XFIFO - D[7:0]. This mode adds XFIFO controls with sense of XFIFO full and XFIFO empty. This mode uses no address or ALE. The XFIFO can only be used in asynchronous mode."]
+    RDWS:
+      HB8CFG_RDN2: [0x0, "Active RDn is 2 EPI clocks."]
+      HB8CFG_RDN4: [0x1, "Active RDn is 4 EPI clocks."]
+      HB8CFG_RDN6: [0x2, "Active RDn is 6 EPI clocks."]
+      HB8CFG_RDN8: [0x3, "Active RDn is 8 EPI clocks."]
+    WRWS:
+      HB8CFG_WRN2: [0x0, "Active WRn is 2 EPI clocks."]
+      HB8CFG_WRN4: [0x1, "Active WRn is 4 EPI clocks."]
+      HB8CFG_WRN6: [0x2, "Active WRn is 6 EPI clocks."]
+      HB8CFG_WRN8: [0x3, "Active WRn is 8 EPI clocks."]
+    ALEHIGH:
+      HB8CFG_ALE_STROBE_ACTIVE_LOW: [0x0, "The address latch strobe for CS0n accesses is ALEn (active Low)."]
+      HB8CFG_ALE_STROBE_ACTIVE_HIGH: [0x1, "The address latch strobe for CS0n accesses is ALE (active High)."]
+    RDHIGH:
+      HB8CFG_READ_STROBE_ACTIVE_LOW: [0x0, "The READ strobe for CS0n is RDn (active Low)."]
+      HB8CFG_READ_STROBE_ACTIVE_HIGH: [0x1, "The READ strobe for CS0n is RD (active High)."]
+    WRHIGH:
+      HB8CFG_WRITE_STROBE_ACTIVE_LOW: [0x0, "The WRITE strobe for CS0n is WRn (active Low)."]
+      HB8CFG_WRITE_STROBE_ACTIVE_HIGH: [0x1, "The WRITE strobe for CS0n is WR (active High)."]
+    XFEEN:
+      HB8CFG_FIFO_EMPTY_MONITOR_OFF: [0x0, "No effect."]
+      HB8CFG_FIFO_EMPTY_MONITOR: [0x1, "An external FIFO empty signal can be used to control read cycles. If this bit is set and the FEMPTY signal is high, XFIFO reads are stalled."]
+    XFFEN:
+      HB8CFG_FIFO_FULL_MONITOR_OFF: [0x0, "No effect."]
+      HB8CFG_FIFO_FULL_MONITOR: [0x1, "An external FIFO full signal can be used to control write cycles. If this bit is set and the FFULL full signal is high, XFIFO writes are stalled."]
+    IRDYINV:
+      HB8CFG_IRDY_POLARITY_NORMAL: [0x0, "No effect."]
+      HB8CFG_IRDY_POLARITY_INVERT: [0x1, "Invert the polarity of incoming external ready (iRDY signal). If this bit is set and the iRDY signal (EPIS032) is high the current access is stalled."]
+    RDYEN:
+      HB8CFG_IRDY_EXTERNAL_DISABLE: [0x0, "No effect."]
+      HB8CFG_IRDY_EXTERNAL_ENABLE: [0x1, "An external ready can be used to control the continuation of the current access. If this bit is set and the iRDY signal (EPIS032) is low, the current access is stalled."]
+    CLKINV:
+      HB8CFG_CLK_POLARITY_NORMAL: [0x0, "No effect."]
+      HB8CFG_CLK_POLARITY_INVERT: [0x1, "Invert EPI clock to ensure the rising edge is centered for outbound signal's setup and hold. Inbound signal is captured on rising edge EPI clock."]
+    CLKGATEI:
+      HB8CFG_CLK_FREE_RUN_IDLE: [0x0, "The EPI clock is free running."]
+      HB8CFG_CLK_FORCE_LOW_IDLE: [0x1, "The EPI clock is output only when there is data to write or read (current transaction); otherwise the EPI clock is held low."]
+    CLKGATE:
+      HB8CFG_CLK_FREE_RUN: [0x0, "The EPI clock is free running."]
+      HB8CFG_CLK_FORCE_LOW: [0x1, "The EPI clock is held low."]
+  HB16CFG:
+    MODE:
+      HB16CFG_ADMUX: [0x0, "ADMUX - AD[15:0]Data and Address are muxed."]
+      HB16CFG_ADNONMUX: [0x1, "ADNONMUX - D[15:0]Data and address are separate. This mode is not practical in HB16 mode for normal peripherals because there are generally not enough address bits available."]
+      HB16CFG_CONT_READ: [0x2, "Continuous Read - D[15:0]This mode is the same as ADNONMUX, but uses address switch for multiple reads instead of OEn strobing. This mode is not practical in HB16 mode for normal SRAMs because there are generally not enough address bits available."]
+      HB16CFG_XFIFO: [0x3, "XFIFO - D[15:0]This mode adds XFIFO controls with sense of XFIFO full and XFIFO empty. This mode uses no address or ALE.Note that the XFIFO can only be used in asynchronous mode."]
+    BSEL:
+      HB16CFG_NO_BYTE_SELECTS: [0x0, "No Byte SelectsData is read and written as 16 bits."]
+      HB16CFG_ENABLE_BYLE_SELECT: [0x1, "Enable Byte SelectsTwo EPI signals function as byte select signals to allow 8-bit transfers. See for details on which EPI signals are used."]
+    RDWS:
+      HB16CFG_RDN2: [0x0, "Active RDn is 2 EPI clocks."]
+      HB16CFG_RDN4: [0x1, "Active RDn is 4 EPI clocks."]
+      HB16CFG_RDN6: [0x2, "Active RDn is 6 EPI clocks."]
+      HB16CFG_RDN8: [0x3, "Active RDn is 8 EPI clocks."]
+    WRWS:
+      HB16CFG_WRN2: [0x0, "Active WRn is 2 EPI clocks."]
+      HB16CFG_WRN4: [0x1, "Active WRn is 4 EPI clocks."]
+      HB16CFG_WRN6: [0x2, "Active WRn is 6 EPI clocks."]
+      HB16CFG_WRN8: [0x3, "Active WRn is 8 EPI clocks."]
+    BURST:
+      HB16CFG_BURST_MODE_DISABLE: [0x0, "Burst mode is disabled."]
+      HB16CFG_BURST_MODE_ENABLE: [0x1, "Burst mode is enabled for CS0n or single chip access."]
+    RDCRE:
+      HB16CFG_CRE_READ_FORCE_CLEAR: [0x0, "No Action."]
+      HB16CFG_CRE_READ_TRIGGER: [0x1, "Start CRE read transaction for CS0n."]
+    WRCRE:
+      HB16CFG_CRE_WRITE_FORCE_CLEAR: [0x0, "No Action."]
+      HB16CFG_CRE_WRITE_TRIGGER: [0x1, "Start CRE write transaction for CS0n."]
+    ALEHIGH:
+      HB16CFG_ALE_STROBE_ACTIVE_LOW: [0x0, "The address latch strobe for CS0n is ALEn (active Low)."]
+      HB16CFG_ALE_STROBE_ACTIVE_HIGH: [0x1, "The address latch strobe for CS0n is ALE (active High)."]
+    RDHIGH:
+      HB16CFG_READ_STROBE_ACTIVE_LOW: [0x0, "The READ strobe for CS0n is RDn (active Low)."]
+      HB16CFG_READ_STROBE_ACTIVE_HIGH: [0x1, "The READ strobe for CS0n is RD (active High)."]
+    WRHIGH:
+      HB16CFG_WRITE_STROBE_ACTIVE_LOW: [0x0, "The WRITE strobe for CS0n is WRn (active Low)."]
+      HB16CFG_WRITE_STROBE_ACTIVE_HIGH: [0x1, "The WRITE strobe for CS0n is WR (active High)."]
+    XFEEN:
+      HB16CFG_FIFO_EMPTY_MONITOR_OFF: [0x0, "No effect."]
+      HB16CFG_FIFO_EMPTY_MONITOR: [0x1, "An external FIFO empty signal can be used to control read cycles. If this bit is set and the FEMPTY signal is high, XFIFO reads are stalled."]
+    XFFEN:
+      HB16CFG_FIFO_FULL_MONITOR_OFF: [0x0, "No effect."]
+      HB16CFG_FIFO_FULL_MONITOR: [0x1, "An external FIFO full signal can be used to control write cycles. If this bit is set and the FFULL signal is high, XFIFO writes are stalled."]
+    IRDYINV:
+      HB16CFG_IRDY_POLARITY_NORMAL: [0x0, "No effect."]
+      HB16CFG_IRDY_POLARITY_INVERT: [0x1, "Invert polarity of incoming external ready. If this bit is set and the iRDY signal (EPIS032) is high the current access is stalled."]
+    RDYEN:
+      HB16CFG_IRDY_EXTERNAL_DISABLE: [0x0, "No effect."]
+      HB16CFG_IRDY_EXTERNAL_ENABLE: [0x1, "An external ready (iRDY) can be used to control the continuation of the current access. If this bit is set and the iRDY signal (EPIS032) is low, the current access is stalled."]
+    CLKINV:
+      HB16CFG_CLK_POLARITY_NORMAL: [0x0, "No effect."]
+      HB16CFG_CLK_POLARITY_INVERT: [0x1, "Invert EPI clock to ensure the rising edge is centered for outbound signals setup and hold. Inbound signal is captured on rising edge EPI clock."]
+    CLKGATEI:
+      HB16CFG_CLK_FREE_RUN_IDLE: [0x0, "The EPI clock is free running."]
+      HB16CFG_CLK_FORCE_LOW_IDLE: [0x1, "The EPI clock is output only when there is data to write or read (current transaction); otherwise the EPI clock is held low."]
+    CLKGATE:
+      HB16CFG_CLK_FREE_RUN: [0x0, "The EPI clock is free running."]
+      HB16CFG_CLK_FORCE_LOW: [0x1, "The EPI clock is held low."]
+  ADDRMAP:
+    ERADR:
+      ADDR_MEM_NO_MAP: [0x0, "Not mapped"]
+      ADDR_MEM_MAP_60000000: [0x1, "At 0x60000000"]
+      ADDR_MEM_MAP_80000000: [0x2, "At 0x80000000"]
+      ADDR_MEM_DUAL_MAP: [0x3, "Only to be used with Host Bus quad chip select. In quad chip select mode, CS0n maps to 0x60000000 and CS1n maps to 0x80000000."]
+    ERSZ:
+      ADDR_MEM_SIZE_256: [0x0, "256 bytes; lower address range: 0x00 to 0xFF"]
+      ADDR_MEM_SIZE_64K: [0x1, "64 KB; lower address range: 0x0000 to 0xFFFF"]
+      ADDR_MEM_SIZE_16M: [0x2, "16 MB; lower address range: 0x000000 to 0xFFFFFF"]
+      ADDR_MEM_SIZE_256M: [0x3, "256 MB; lower address range: 0x0000000 to 0xFFFFFFF"]
+    EPADR:
+      ADDR_PERIPH_NO_MAP: [0x0, "Not mapped"]
+      ADDR_PERIPH_MAP_60000000: [0x1, "External Peripheral (EPADR): maps to 0xA0000000 | External RAM (ERADR): same bit value maps to 0x60000000 (not supported on AM13E2x)"]
+      ADDR_PERIPH_MAP_80000000: [0x2, "External Peripheral (EPADR): maps to 0xC0000000 | External RAM (ERADR): same bit value maps to 0x80000000"]
+      ADDR_PERIPH_DUAL_MAP: [0x3, "Only to be used with Host Bus quad chip select. In quad chip select mode, CS2n maps to 0xA0000000 and CS3n maps to 0xC0000000."]
+    EPSZ:
+      ADDR_PERIPH_SIZE_256: [0x0, "256 bytes; lower address range: 0x00 to 0xFF"]
+      ADDR_PERIPH_SIZE_64K: [0x1, "64 KB; lower address range: 0x0000 to 0xFFFF"]
+      ADDR_PERIPH_SIZE_16M: [0x2, "16 MB; lower address range: 0x000000 to 0xFFFFFF"]
+      ADDR_PERIPH_SIZE_256M: [0x3, "256 MB; lower address range: 0x0000000 to 0xFFFFFFF"]
+    ECADR:
+      ADDR_CODE_NO_MAP: [0x0, "Not mapped"]
+      ADDR_CODE_MAP_10000000: [0x1, "At 0x10000000"]
+    ECSZ:
+      ADDR_CODE_SIZE_256: [0x0, "256 bytes; lower address range: 0x00 to 0xFF"]
+      ADDR_CODE_SIZE_64K: [0x1, "64 KB; lower address range: 0x0000 to 0xFFFF"]
+      ADDR_CODE_SIZE_16M: [0x2, "16 MB; lower address range: 0x000000 to 0xFFFFFF"]
+      ADDR_CODE_SIZE_256M: [0x3, "256MB; lower address range: 0x0000000 to 0x0FFFFFFF"]
+  RSIZE0:
+    SIZE:
+      SIZE_8_BIT: [0x1, "Byte (8 bits)"]
+      SIZE_16_BIT: [0x2, "Half-word (16 bits)"]
+      SIZE_32_BIT: [0x3, "Word (32 bits)"]
+  RSIZE1:
+    SIZE:
+      SIZE_8_BIT: [0x1, "Byte (8 bits)"]
+      SIZE_16_BIT: [0x2, "Half-word (16 bits)"]
+      SIZE_32_BIT: [0x3, "Word (32 bits)"]
+  STAT:
+    ACTIVE:
+      STATUS_NON_BLOCK_READ_STD0: [0x0, "If NBRBUSY is set, the EPIRPSTD0 register is active.If the NBRBUSY bit is clear, then neither EPIRPSTDx register is active."]
+      STATUS_NON_BLOCK_READ_STD1: [0x1, "The EPIRPSTD1 register is active."]
+    NBRBUSY:
+      STATUS_NON_BLOCK_READ_FREE: [0x0, "The external interface is not performing a non-blocking read."]
+      STATUS_NON_BLOCK_READ_BUSY: [0x1, "The external interface is performing a non-blocking read, or if the non-blocking read is paused due to a write."]
+    WBUSY:
+      STATUS_WRITE_FREE: [0x0, "The external interface is not performing a write."]
+      STATUS_WRITE_BUSY: [0x1, "The external interface is performing a write."]
+    INITSEQ:
+      STATUS_SDRAM_INIT_OKAY: [0x0, "The SDRAM interface is not in the wakeup period."]
+      STATUS_SDRAM_INIT_BUSY: [0x1, "The SDRAM interface is running through the wakeup period (greater than 100 microseconds).If an attempt is made to read or write the SDRAM during this period, the access is held off until the wakeup period is complete."]
+    XFEMPTY:
+      STATUS_EXTERNAL_FIFO_OKAY: [0x0, "The XFIFO is not signaling as empty."]
+      STATUS_EXTERNAL_FIFO_EMPTY: [0x1, "The XFIFO is signaling as empty (the FIFO empty signal is high). Attempts to read in this case are stalled until the XFIFO empty signal goes low or the counter times out as specified by the MAXWAIT field."]
+    XFFULL:
+      STATUS_EXTERNAL_FIFO_OKAY: [0x0, "The XFIFO is not signaling as full."]
+      STATUS_EXTERNAL_FIFO_FULL: [0x1, "The XFIFO is signaling as full (the FIFO full signal is high). Attempts to write in this case are stalled until the XFIFO full signal goes low or the counter times out as specified by the MAXWAIT field."]
+    CELOW:
+      STATUS_CLK_GATE_OFF: [0x0, "The external device is not gating the clock."]
+      STATUS_CLK_GATE_ON: [0x1, "The external device is gating the clock (iRDY is low). Attempts to read or write in this situation are stalled until the clock is enabled or the counter times out as specified by the MAXWAIT field."]
+  FIFOLVL:
+    RDFIFO:
+      ENTRIES_1: [0x1, "Trigger when there are 1 or more entries in the NBRFIFO."]
+      ENTRIES_2: [0x2, "Trigger when there are 2 or more entries in the NBRFIFO."]
+      ENTRIES_4: [0x3, "Trigger when there are 4 or more entries in the NBRFIFO."]
+      ENTRIES_6: [0x4, "Trigger when there are 6 or more entries in the NBRFIFO."]
+      ENTRIES_7: [0x5, "Trigger when there are 7 or more entries in the NBRFIFO."]
+      ENTRIES_8: [0x6, "Trigger when there are 8 entries in the NBRFIFO."]
+    WRFIFO:
+      EMPTY: [0x0, "Interrupt is triggered while WRFIFO is empty. It will be deasserted when not empty. This encoding is optimized for burst of 4 writes."]
+      ENTRIES_2: [0x2, "Interrupt is triggered until there are only two slots available. Thus, trigger is deasserted when there are two WRFIFO entries present. This configuration is optimized for bursts of 2."]
+      ENTRIES_1: [0x3, "Interrupt is triggered until there is one WRFIFO entry available. This configuration expects only single writes."]
+      NOT_FULL: [0x4, "Trigger interrupt when WRFIFO is not full, meaning trigger will continue to assert until there are four entries in the WRFIFO."]
+    RSERR:
+      FIFOLVL_READ_STALL_ERR_INT_DISABLE: [0x0, "The Read Stalled error interrupt is disabled. Reads behave as normal and are stalled until any preceding writes have completed and the read has returned a result."]
+      FIFOLVL_READ_STALL_ERR_INT_ENABLE: [0x1, "This bit enables the Read Stalled error interrupt (RSTALL in the EPIEISC register) to be generated when a read is attempted and the WFIFO is not empty. The read is still stalled during the time the WFIFO drains, but this error notifies the application that this excess delay has occurred."]
+    WFERR:
+      FIFOLVL_WRITE_FULL_ERR_INT_DISABLE: [0x0, "The Write Full error interrupt is disabled. Writes are stalled when the WFIFO is full until a space becomes available but an error is not generated. Note that the Cortex-M4 write buffer may hide that stall if no other memory transactions are attempted during that time."]
+      FIFOLVL_WRITE_FULL_ERR_INT_ENABLE: [0x1, "This bit enables the Write Full error interrupt (WTFULL in the EPIEISC register) to be generated when a write is attempted and the WFIFO is full. The write stalls until a WFIFO entry becomes available."]
+  IM:
+    ERRIM:
+      IM_ERR_MASK: [0x0, "ERRIS in the EPIRIS register is masked and does not cause an interrupt."]
+      IM_ERR: [0x1, "ERRIS in the EPIRIS register is not masked and can trigger an interrupt to the interrupt controller."]
+    RDIM:
+      IM_RD_MASK: [0x0, "RDRIS in the EPIRIS register is masked and does not cause an interrupt."]
+      IM_RD: [0x1, "RDRIS in the EPIRIS register is not masked and can trigger an interrupt to the interrupt controller."]
+    WRIM:
+      IM_WR_MASK: [0x0, "WRRIS in the EPIRIS register is masked and does not cause an interrupt."]
+      IM_WR: [0x1, "WRRIS in the EPIRIS register is not masked and can trigger an interrupt to the interrupt controller."]
+    DMARDIM:
+      IM_DMARD_MASK: [0x0, "DMARDRIS in the EPIRIS register is masked and does not cause an interrupt."]
+      IM_DMARD: [0x1, "DMARDRIS in the EPIRIS register is not masked and can trigger an interrupt to the interrupt controller."]
+    DMAWRIM:
+      IM_DMAWR_MASK: [0x0, "DMAWRRIS in the EPIRIS register is masked and does not cause an interrupt."]
+      IM_DMAWR: [0x1, "DMAWRRIS in the EPIRIS register is not masked and can trigger an interrupt to the interrupt controller."]
+  RIS:
+    ERRRIS:
+      RIS_ERR_CLR: [0x0, "An error has not occurred."]
+      RIS_ERR: [0x1, "A WFIFO Full, a Read Stalled, or a Timeout error has occurred. To determine which error occurred, read the status of the EPI Error Interrupt Status and Clear (EPIEISC) register. This bit is cleared by writing a 1 to the bit in the EPIEISC register that caused the interrupt."]
+    RDRIS:
+      RIS_RD_CLR: [0x0, "The number of valid entries in the NBRFIFO is below the trigger range specified by the RDFIFO field in the EPIFIFOLVL register."]
+      RIS_RD: [0x1, "The number of valid entries in the NBRFIFO is in the trigger range specified by the RDFIFO field in the EPIFIFOLVL register."]
+    WRRIS:
+      RIS_WR_CLR: [0x0, "The number of available entries in the WFIFO is above the range specified by the WRFIFO field in the EPIFIFOLVL register."]
+      RIS_WR: [0x1, "The number of available entries in the WFIFO is within the trigger range specified by the WRFIFO field in the EPIFIFOLVL register."]
+    DMARDRIS:
+      RIS_DMARD_CLR: [0x0, "The read uDMA has not completed."]
+      RIS_DMARD: [0x1, "The read uDMA has completed."]
+    DMAWRRIS:
+      RIS_DMAWR_CLR: [0x0, "The write uDMA has not completed."]
+      RIS_DMAWR: [0x1, "The write uDMA has completed."]
+  MIS:
+    ERRMIS:
+      MIS_ERR_CLR: [0x0, "An error has not occurred or the interrupt is masked."]
+      MIS_ERR: [0x1, "A WFIFO Full, a Read Stalled, or a Timeout error has occurred and the ERIM bit in the EPIIM register is set, triggering an interrupt to the interrupt controller."]
+    RDMIS:
+      MIS_RD_CLR: [0x0, "The number of valid entries in the NBRFIFO is below the range specified by the trigger level or the interrupt is masked."]
+      MIS_RD: [0x1, "The number of valid entries in the NBRFIFO is within the range specified by the trigger level (the RDFIFO field in the EPIFIFOLVL register) and the RDIM bit in the EPIIM register is set, triggering an interrupt to the interrupt controller."]
+    WRMIS:
+      MIS_WR_CLR: [0x0, "The number of available entries in the WFIFO is above the range specified by the trigger level or the interrupt is masked."]
+      MIS_WR: [0x1, "The number of available entries in the WFIFO is within the range specified by the trigger level (the WRFIFO field in the EPIFIFOLVL register) and the WRIM bit in the EPIIM register is set, triggering an interrupt to the interrupt controller."]
+    DMARDMIS:
+      MIS_DMARD_CLR: [0x0, "The read uDMA has not completed or the interrupt is masked."]
+      MIS_DMARD: [0x1, "The read uDMA has completed and the DMAWRIM bit in the EPIIM register is set, triggering an interrupt to the interrupt controller."]
+    DMAWRMIS:
+      MIS_DMAWR_CLR: [0x0, "The write uDMA has not completed or the interrupt is masked."]
+      MIS_DMAWR: [0x1, "The write uDMA has completed and the DMAWRIM bit in the EPIIM register is set, triggering an interrupt to the interrupt controller."]
+  EISC:
+    TOUT:
+      EISC_TOUT_CLEAR: [0x0, "No timeout error has occurred."]
+      EISC_TOUT: [0x1, "A timeout error has occurred."]
+    RSTALL:
+      EISC_RSTALL_CLEAR: [0x0, "The RSERR bit is not enabled or no pending reads are stalled."]
+      EISC_RSTALL: [0x1, "The RSERR bit is enabled and a pending read is stalled due to writes in the WFIFO."]
+    WTFULL:
+      EISC_WTFULL_CLEAR: [0x0, "The WFERR bit is not enabled or no writes are stalled."]
+      EISC_WTFULL: [0x1, "The WFERR bit is enabled and a write is stalled due to the WFIFO being full."]
+  HB8TIME2:
+    RDWSM:
+      HB8TIME2_RDWS_UNCHANGED: [0x0, "No change in the number of wait state clock cycles programmed in the RDWS field of EPIHB8CFG."]
+      HB8TIME2_RDWS_MINUS_ONE: [0x1, "Wait state value is now (RDWS - 1) where the RDWS field is programmed in EPIHB8CFG."]
+    WRWSM:
+      HB8TIME2_WRWS_UNCHANGED: [0x0, "No change in the number of wait state clock cycles programmed in the in WRWS field in EPIHB8CFG register."]
+      HB8TIME2_WRWS_MINUS_ONE: [0x1, "Wait state value is now (WRWS - 1) where the WRWS field is programmed in EPIHB8CFG."]
+    CAPWIDTH:
+      CLK_1: [0x1, "1 EPI clock."]
+      CLK_2: [0x2, "2 EPI clock."]
+    IRDYDLY:
+      CLK_1: [0x1, "Stall begins one EPI clocks past iRDY low being sampled on the rising edge of EPIO clock."]
+      CLK_2: [0x2, "Stall begins two EPI clocks past iRDY low being sampled on the rising edge of EPIO clock."]
+      CLK_3: [0x3, "Stall begins three EPI clocks past iRDY low being sampled on the rising edge of EPIO clock."]
+  HB16TIME2:
+    RDWSM:
+      HB16TIME2_RDWS_UNCHANGED: [0x0, "No change in the number of wait state clock cycles programmed in the RDWS field of EPIHB16CFG."]
+      HB16TIME2_RDWS_MINUS_ONE: [0x1, "Wait state value is now (RDWS - 1) where the RDWS field is programmed in EPIHB16CFG."]
+    WRWSM:
+      HB16TIME2_WRWS_UNCHANGED: [0x0, "No change in the number of wait state clock cycles programmed in the in WRWS field in EPIHB16CFG register."]
+      HB16TIME2_WRWS_MINUS_ONE: [0x1, "Wait state value is now (WRWS - 1) where the WRWS field is programmed in EPIHB16CFG."]
+    CAPWIDTH:
+      CLK_1: [0x1, "1 EPI clock."]
+      CLK_2: [0x2, "2 EPI clock."]
+    PSRAMSZ:
+      NO_LIMIT: [0x0, "No row size limitation"]
+      BYTES_128: [0x1, "128 B"]
+      BYTES_256: [0x2, "256 B"]
+      BYTES_512: [0x3, "512 B"]
+      BYTES_1024: [0x4, "1024 B"]
+      BYTES_2048: [0x5, "2048 B"]
+      BYTES_4096: [0x6, "4096 B"]
+      BYTES_8192: [0x7, "8192 B"]
+    IRDYDLY:
+      CLK_1: [0x1, "Stall begins one EPI clocks past iRDY low being sampled on the rising edge of EPIO clock."]
+      CLK_2: [0x2, "Stall begins two EPI clocks past iRDY low being sampled on the rising edge of EPIO clock."]
+      CLK_3: [0x3, "Stall begins three EPI clocks past iRDY low being sampled on the rising edge of EPIO clock."]
+  HB8TIME3:
+    RDWSM:
+      HB8TIME3_RDWS_UNCHANGED: [0x0, "No change in the number of wait state clock cycles programmed in the RDWS field of EPIHB8CFG."]
+      HB8TIME3_RDWS_MINUS_ONE: [0x1, "Wait state value is now (RDWS - 1) where the RDWS field is programmed in EPIHB8CFG."]
+    WRWSM:
+      HB8TIME3_WRWS_UNCHANGED: [0x0, "No change in the number of wait state clock cycles programmed in the in WRWS field in EPIHB8CFG register."]
+      HB8TIME3_WRWS_MINUS_ONE: [0x1, "Wait state value is now (WRWS - 1) where the WRWS field is programmed in EPIHB8CFG."]
+    CAPWIDTH:
+      CLK_1: [0x1, "1 EPI clock."]
+      CLK_2: [0x2, "2 EPI clock."]
+    IRDYDLY:
+      CLK_1: [0x1, "Stall begins one EPI clocks past iRDY low being sampled on the rising edge of EPIO clock."]
+      CLK_2: [0x2, "Stall begins two EPI clocks past iRDY low being sampled on the rising edge of EPIO clock."]
+      CLK_3: [0x3, "Stall begins three EPI clocks past iRDY low being sampled on the rising edge of EPIO clock."]
+  HB16TIME3:
+    RDWSM:
+      HB16TIME3_RDWS_UNCHANGED: [0x0, "No change in the number of wait state clock cycles programmed in the RDWS field of EPIHB16CFG."]
+      HB16TIME3_RDWS_MINUS_ONE: [0x1, "Wait state value is now (RDWS - 1) where the RDWS field is programmed in EPIHB16CFG."]
+    WRWSM:
+      HB16TIME3_WRWS_UNCHANGED: [0x0, "No change in the number of wait state clock cycles programmed in the in WRWS field in EPIHB16CFG register."]
+      HB16TIME3_WRWS_MINUS_ONE: [0x1, "Wait state value is now (WRWS - 1) where the WRWS field is programmed in EPIHB16CFG."]
+    CAPWIDTH:
+      CLK_1: [0x1, "1 EPI clock."]
+      CLK_2: [0x2, "2 EPI clock."]
+    PSRAMSZ:
+      NO_LIMIT: [0x0, "No row size limitation"]
+      BYTES_128: [0x1, "128 B"]
+      BYTES_256: [0x2, "256 B"]
+      BYTES_512: [0x3, "512 B"]
+      BYTES_1024: [0x4, "1024 B"]
+      BYTES_2048: [0x5, "2048 B"]
+      BYTES_4096: [0x6, "4096 B"]
+      BYTES_8192: [0x7, "8192 B"]
+    IRDYDLY:
+      CLK_1: [0x1, "Stall begins one EPI clocks past iRDY low being sampled on the rising edge of EPIO clock."]
+      CLK_2: [0x2, "Stall begins two EPI clocks past iRDY low being sampled on the rising edge of EPIO clock."]
+      CLK_3: [0x3, "Stall begins three EPI clocks past iRDY low being sampled on the rising edge of EPIO clock."]
+  HB8TIME4:
+    RDWSM:
+      HB8TIME4_RDWS_UNCHANGED: [0x0, "No change in the number of wait state clock cycles programmed in the RDWS field of EPIHB8CFG."]
+      HB8TIME4_RDWS_MINUS_ONE: [0x1, "Wait state value is now (RDWS - 1) where the RDWS field is programmed in EPIHB8CFG."]
+    WRWSM:
+      HB8TIME4_WRWS_UNCHANGED: [0x0, "No change in the number of wait state clock cycles programmed in the in WRWS field in EPIHB8CFG register."]
+      HB8TIME4_WRWS_MINUS_ONE: [0x1, "Wait state value is now (WRWS - 1) where the WRWS field is programmed in EPIHB8CFG."]
+    CAPWIDTH:
+      CLK_1: [0x1, "1 EPI clock."]
+      CLK_2: [0x2, "2 EPI clock."]
+    IRDYDLY:
+      CLK_1: [0x1, "Stall begins one EPI clocks past iRDY low being sampled on the rising edge of EPIO clock."]
+      CLK_2: [0x2, "Stall begins two EPI clocks past iRDY low being sampled on the rising edge of EPIO clock."]
+      CLK_3: [0x3, "Stall begins three EPI clocks past iRDY low being sampled on the rising edge of EPIO clock."]
+  HB16TIME4:
+    RDWSM:
+      HB16TIME4_RDWS_UNCHANGED: [0x0, "No change in the number of wait state clock cycles programmed in the RDWS field of EPIHB16CFG."]
+      HB16TIME4_RDWS_MINUS_ONE: [0x1, "Wait state value is now (RDWS - 1) where the RDWS field is programmed in EPIHB16CFG."]
+    WRWSM:
+      HB16TIME4_WRWS_UNCHANGED: [0x0, "No change in the number of wait state clock cycles programmed in the in WRWS field in EPIHB16CFG register."]
+      HB16TIME4_WRWS_MINUS_ONE: [0x1, "Wait state value is now (WRWS - 1) where the WRWS field is programmed in EPIHB16CFG."]
+    CAPWIDTH:
+      CLK_1: [0x1, "1 EPI clock"]
+      CLK_2: [0x2, "2 EPI clock"]
+    PSRAMSZ:
+      NO_LIMIT: [0x0, "No row size limitation"]
+      BYTES_128: [0x1, "128 B"]
+      BYTES_256: [0x2, "256 B"]
+      BYTES_512: [0x3, "512 B"]
+      BYTES_1024: [0x4, "1024 B"]
+      BYTES_2048: [0x5, "2048 B"]
+      BYTES_4096: [0x6, "4096 B"]
+      BYTES_8192: [0x7, "8192 B"]
+    IRDYDLY:
+      CLK_1: [0x1, "Stall begins one EPI clocks past iRDY low being sampled on the rising edge of EPIO clock."]
+      CLK_2: [0x2, "Stall begins two EPI clocks past iRDY low being sampled on the rising edge of EPIO clock."]
+      CLK_3: [0x3, "Stall begins three EPI clocks past iRDY low being sampled on the rising edge of EPIO clock."]
